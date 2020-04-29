@@ -1,0 +1,18 @@
+.top-bar-bg{
+    background-color: #6699CC;
+}
+.top-bar-style{
+    font-style:normal;
+    color:#003366
+}
+.top-bar{
+    padding-left: 20px;
+}
+.navbar-nav {
+    flex-direction: row;
+  }
+.ml-auto{
+    left: auto !important;
+    right: 0px;
+    padding-right: 20px;
+}
