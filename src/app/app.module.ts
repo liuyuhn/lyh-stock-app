@@ -8,7 +8,7 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { MyComponentComponent } from './my-component/my-component.component';
 import { TopBarComponent } from './my-component/top-bar/top-bar.component';
-import { LoginComponent } from './my-component/login/login.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
