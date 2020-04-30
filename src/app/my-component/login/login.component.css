@@ -1,0 +1,33 @@
+fieldset {
+    width: 380px;
+    margin: 80px auto;
+    float: none;
+    padding: .35em .625em .75em;
+    border: 1px solid #336699;
+ }
+legend {
+    color:#003366;
+    padding: .5em;
+    border: 0;
+    width: auto;
+    margin-bottom: 0px;
+ }
+.inp-positon{
+    text-align: center;
+}
+.positon{
+    text-align: center;
+    margin: 12px 0px;
+}
+.input{
+    border-radius: 10px;
+    margin: 7px 5px;
+    border-color: #6699CC;
+}
+.button-st{
+    font-weight: normal;
+    background-color: #75a8db;
+    border-radius: 7px !important;
+    color: #012549;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2)
+}
