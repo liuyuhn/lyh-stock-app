@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,10 @@ import { MyComponentComponent } from './my-component/my-component.component';
 import { TopBarComponent } from './my-component/top-bar/top-bar.component';
 import { LoginComponent } from './login/login.component';
 import { UserNavComponent } from './user/user-nav/user-nav.component';
+import { ServiceComponent } from './service/service.component';
+import { DynamicFormComponent } from './user/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './user/dynamic-form-question/dynamic-form-question.component';
+import { ClassComponent } from './class/class.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +25,15 @@ import { UserNavComponent } from './user/user-nav/user-nav.component';
     MyComponentComponent,
     TopBarComponent,
     LoginComponent,
-    UserNavComponent
+    UserNavComponent,
+    ServiceComponent,
+    DynamicFormComponent,
+    DynamicFormQuestionComponent,
+    ClassComponent, 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, 
+    ReactiveFormsModule,       
     AppRoutingModule,
     NgbModule,
     RouterModule.forRoot([
@@ -34,4 +44,8 @@ import { UserNavComponent } from './user/user-nav/user-nav.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){
+    
+  }
+ }
