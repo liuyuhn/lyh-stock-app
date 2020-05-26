@@ -3,8 +3,7 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [
-      "jquery",
-      "jest"
+      "jquery"
     ]
   },
   "files": [

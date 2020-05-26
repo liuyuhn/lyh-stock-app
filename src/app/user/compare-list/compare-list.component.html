@@ -1,0 +1,89 @@
+<!-- <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form> -->
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <fieldset style=" width: 590px; margin: 80px auto; padding: 20px; border: 1px solid #336699">
+        <label class="custom-control-inline">Specify Periodicity:
+            <div class="d-flex flex-wrap align-content-between">
+                <select class="custom-select" style="margin-left: 58px;">
+                    <option selected>Please select...</option>
+                    <option>One month</option>
+                    <option>Two months</option>
+                    <option>Three months</option>
+                </select>
+            </div>
+        </label>
+        <label class="custom-control-inline">
+            Time Period:
+            <div class="form-group hidden">
+                <div class="input-group">
+                    <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker="ngbDatepicker"
+                        [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                        [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!">
+                    <ng-template #t let-date let-focused="focused">
+                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null">
+                            {{ date.day }}
+                        </span>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="form-group" style="margin-left: 105px; margin-bottom: 0px;">
+                <div class="input-group">
+                    <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
+                        [value]="formatter.format(fromDate)"
+                        (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                    <div class="input-group-append">
+                        <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ml-2" style="margin-bottom: 0px;">
+                <div class="input-group">
+                    <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
+                        [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)">
+                    <div class="input-group-append">
+                        <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
+                    </div>
+                </div>
+            </div>
+        </label>
+        <label class="custom-control-inline">Select Company/Sector:
+            <div class="d-flex flex-wrap align-content-between">
+                <select class="custom-select">
+                    <option selected>Please select...</option>
+                    <option>Company</option>
+                    <option>Sector</option>
+                </select>
+            </div>
+        </label>
+        <div>
+        <label class="custom-control-inline">Select Stock Exchange:
+            <div class="d-flex flex-wrap align-content-between">
+                <select class="custom-select" style="margin-left: 24px;">
+                    <option selected>Please select...</option>
+                    <option>BSE</option>
+                    <option>NSE</option>
+                </select>
+            </div>
+        </label>
+    </div>
+        <label class="custom-control-inline">Company Name:
+            <div class="d-flex flex-wrap align-content-between">
+                <select class="custom-select" style="margin-left: 74px;">
+                    <option selected>Please select...</option>
+                    <option>YPO</option>
+                    <option>JPG</option>
+                    <option>DWK</option>
+                    <option>HFJ</option>
+                    <option>JPG</option>
+                </select>
+            </div>
+        </label>
+        <div style="text-align:center">
+            <button type="submit" class="btn btn-large button_st" [disabled]="!profileForm.valid"
+            onmouseover="this.style.backgroundColor='#4c7cac';" 
+            onmouseout="this.style.backgroundColor='#75a8db';"
+            >Generate Map</button>
+        </div>
+    </fieldset>
+</form>

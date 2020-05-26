@@ -1,0 +1,15 @@
+fieldset{
+    width: 380px;
+    margin: 80px auto;
+    /* float: none; */
+    padding: 20px;
+    border: 1px solid #336699 !important;
+    background-color: lightcoral !important;
+ }
+legend{
+    color:#003366;
+    padding: 10px;
+    border: 0;
+    width: auto;
+    margin-bottom: 5px;
+ }

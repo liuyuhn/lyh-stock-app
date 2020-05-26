@@ -1,0 +1,50 @@
+select.custom-select {
+    margin: 0 0 0 20px;
+    width: auto;
+  }
+.form-group.hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+  .form-control.hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+  .form-control{
+      width: 118px;
+  }
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+  .button_st{
+    font-weight: normal;
+    background-color: #75a8db;
+    border-radius: 7px !important;
+    color: #012549;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);
+    margin: 10px 0 0 0;
+}
+/* button{
+    /* font-weight: normal; */
+    /* background-color: #75a8db; */
+    /* border-radius: 7px !important; */
+    /* color: #012549; */
+    /* box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2) */

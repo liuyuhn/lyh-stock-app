@@ -16,8 +16,7 @@
       "dom"
     ],
     "types": [
-      "jquery",
-      "jest"
+      "jquery"
     ]
   },
   "angularCompilerOptions": {
