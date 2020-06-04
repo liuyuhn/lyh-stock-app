@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import * as Highcharts from 'highcharts';
 // import { QuestionService } from 'src/app/service/question.service';
 // import { QuestionBase }    from 'src/app/class/question-base';
 // import { Observable }      from 'rxjs';
@@ -11,17 +12,20 @@ import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-boo
   templateUrl: './compare-list.component.html',
   styleUrls: ['./compare-list.component.css'],
 })
-export class CompareListComponent{
+export class CompareListComponent {
+  public isCollapsed = true;
+  public isComCollapsed = true;
+  public isSubCollapsed = true;
+  public isMerCollapsed = true;
   profileForm = new FormGroup({
-    spePeriod: new FormControl(''),
-    lastName: new FormControl(''),
+    // spePeriod: new FormControl(''),
+    // lastName: new FormControl(''),
+  });
+  subForm = new FormGroup({
+    // spePeriod: new FormControl(''),
+    // lastName: new FormControl(''),
   });
   hoveredDate: NgbDate | null = null;
-  // model = {
-  //   // left: true,
-  //   middle: true,
-  //   // right: false
-  // };
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
 
@@ -61,11 +65,57 @@ export class CompareListComponent{
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
   }
-  //   questions$: Observable<QuestionBase<any>[]>;
-  
-  //   constructor(service: QuestionService) {
-  //     this.questions$ = service.getQuestions();
+  //highchart
+  Highcharts = Highcharts;
+  chartOptions = {
+    title: {
+      text: 'STOCK PRICE COMPARATION'                 // 标题
+    },
+    series: [{
+      name: 'first company',
+      data: [11, 22, 33, 44, 55, 66]
+    }]
+  };
+  //chartComOptions
+  chartComOptions = {
+    title: {
+      text: 'STOCK PRICE COMPARATION'                 // 标题
+    },
+    series: [{
+      name: 'compare company',
+      data: [13, 15, 39, 38, 66, 49]
+    }]
+  };
+  //mergeComOptions
+  merComOptions = {
+    series: [{
+      name: 'first company',
+      data: [11, 22, 33, 44, 55, 66]
+  }, {
+      name: 'compare company',
+      data: [13, 15, 39, 38, 66, 49]
+  }]
+  };
+  ngOnInit() {
+    this.ngOnInit
+    console.log('1', this.chartOptions)
+    console.log('2', this.Highcharts)
+  }
+  // genMap() {
+  //   this.Highcharts = Highcharts
+  //   const newchartOptions = {
+  //     title: {
+  //       text: 'STOCK PRICE COMPARATION'                 // 标题
+  //     },
+  //     series: [{
+  //       data: [11, 22, 33, 44, 55, 66]
+  //     }]
   //   }
-  // ngOnInit(): void {
+  //   this.chartOptions = newchartOptions
+  //   console.log('3', this.chartOptions)
+  //   console.log('4', this.Highcharts)
+  // }
+  // addCompare(){
+
   // }
 }

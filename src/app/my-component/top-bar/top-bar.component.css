@@ -14,5 +14,12 @@
 .ml-auto{
     left: auto !important;
     right: 0px;
-    padding-right: 20px;
+    padding-right: 40px;
+}
+.button-st{
+    font-size: 18px;
+    background-color: #75a8db;
+    border-radius: 7px !important;
+    color: #012549;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2)
 }

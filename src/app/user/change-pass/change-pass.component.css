@@ -21,7 +21,7 @@ legend {
 }
 .input{
     border-radius: 10px;
-    margin: 7px 5px;
+    margin: 5px 0px;
     border-color: #6699CC;
 }
 .button-st{
@@ -30,4 +30,16 @@ legend {
     border-radius: 7px !important;
     color: #012549;
     box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2)
+}
+.label_confirm{
+    margin: 5px 5px;
+    color: #012549;
+}
+.label_pass{
+    margin: 5px 17px;
+    color: #012549;
+}
+.label_name{
+    margin: 5px 48px;
+    color: #012549;
 }

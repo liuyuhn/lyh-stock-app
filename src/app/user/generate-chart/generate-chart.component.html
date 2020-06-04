@@ -1,0 +1,13 @@
+<div style="text-align:center">
+    <button type="submit" class="btn btn-large button_st"
+        onmouseover="this.style.backgroundColor='#4c7cac';" 
+        onmouseout="this.style.backgroundColor='#75a8db';"
+        (click)="genMap()">
+        Generate Map</button>
+</div>
+<!-- <div style="text-align:center"> -->
+<highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+    style="width:100%;height: 400px; display: block;padding: 20px 120px;"></highcharts-chart>
+<!-- </div> -->
+
+<!-- <pre>{{this.chart}}</pre> -->

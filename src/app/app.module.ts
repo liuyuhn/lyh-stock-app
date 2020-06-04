@@ -18,6 +18,11 @@ import { DynamicFormQuestionComponent } from './user/dynamic-form-question/dynam
 import { ClassComponent } from './class/class.component';
 import { CompareListComponent } from './user/compare-list/compare-list.component';
 import { IPOListComponent } from './user/ipo-list/ipo-list.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { GenerateChartComponent } from './user/generate-chart/generate-chart.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ChangePassComponent } from './user/change-pass/change-pass.component';
+import { ImportDataComponent } from './admin/import-data/import-data.component';
 
 
 @NgModule({
@@ -35,15 +40,23 @@ import { IPOListComponent } from './user/ipo-list/ipo-list.component';
     ClassComponent, 
     CompareListComponent,
     IPOListComponent,
+    GenerateChartComponent,
+    SignUpComponent,
+    ChangePassComponent,
+    ImportDataComponent,
   ],
   imports: [
     BrowserModule, 
     ReactiveFormsModule,       
     AppRoutingModule,
     NgbModule,
+    HighchartsChartModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
-      { path: 'user-home', component: UserComponent }
+      { path: 'user-home', component: UserComponent },
+      { path: 'sign-up', component: SignUpComponent },
+      { path: 'change-pass', component: ChangePassComponent },
+      { path: 'admin-home', component: AdminComponent }
     ])
   ],
   providers: [],

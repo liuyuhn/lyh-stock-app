@@ -1,0 +1,8 @@
+.button_st{
+    font-weight: normal;
+    background-color: #75a8db;
+    border-radius: 7px !important;
+    color: #012549;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);
+    margin: 10px 0 20px 0;
+}

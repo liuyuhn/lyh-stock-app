@@ -21,8 +21,24 @@ legend {
 }
 .input{
     border-radius: 10px;
-    margin: 7px 5px;
+    margin: 5px 0px;
     border-color: #6699CC;
+}
+.label_name{
+    margin: 5px 20px;
+    color: #012549;
+}
+.label_pass{
+    margin: 5px 7px;
+    color: #012549;
+}
+.label_mail{
+    margin: 5px 19px;
+    color: #012549;
+}
+.label_tel{
+    margin: 5px 4px;
+    color: #012549;
 }
 .button-st{
     font-weight: normal;

@@ -1,17 +1,35 @@
-<!-- <form> -->
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <fieldset>
-        <legend>Sign Up</legend>
+        <legend>Sign In</legend>
         <div class="inp-positon">
-            <input class="input" type="text" placeholder="User Name...">
+            <input class="input" type="text" formControlName="userName" required
+            placeholder="User Name...">
+            <!-- this.loginForm.value.userName -->
         </div>
         <div class="inp-positon">
-            <input class="input" type="text" placeholder="Password...">
+            <input class="input" type="text" formControlName="passWord" required
+            placeholder="Password...">
         </div>
+        <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">
+            Check out our awesome new features!</ngb-alert>
         <div class="positon">
-            <button class="btn btn-large button-st" 
-            onmouseover="this.style.backgroundColor='#4c7cac';" 
-            onmouseout="this.style.backgroundColor='#75a8db';"
-            [routerLink]="['/user-home']">Submit</button>
+            <button class="btn btn-large button-st" [disabled]="!loginForm.valid"
+            onmouseover="this.style.backgroundColor='#4c7cac';"
+            onmouseout="this.style.backgroundColor='#75a8db';" 
+            (click)="changeAlert()">
+            Submit</button>
         </div>
     </fieldset>
-<!-- </form> -->
+</form>
+<div style="text-align: center;margin: 0 0 0 270px;">
+    <!-- <button class="btn btn-large button-st" 
+        onmouseover="this.style.backgroundColor='#4c7cac';" 
+        onmouseout="this.style.backgroundColor='#75a8db';"
+        [routerLink]="['/sign-up']">Sign Up</button> -->
+    <a [routerLink]="['/sign-up']">Please sign up...</a>
+</div>
+
+
+<!-- <p>
+    Value: {{ mylog }}
+  </p> -->
