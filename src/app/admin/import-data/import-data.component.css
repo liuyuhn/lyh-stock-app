@@ -1,0 +1,14 @@
+fieldset {
+    width: 380px;
+    margin:70px 450px 10px;
+    float: none;
+    padding: .35em .625em .75em;
+    border: 1px solid #336699;
+ }
+ legend {
+    color:#003366;
+    padding: .5em;
+    border: 0;
+    width: auto;
+    margin-bottom: 0px;
+ }

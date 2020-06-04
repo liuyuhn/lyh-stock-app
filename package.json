@@ -45,9 +45,11 @@
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@types/bootstrap": "^4.3.2",
     "bootstrap": "^4.4.1",
+    "bootstrap-fileinput": "^5.0.9",
     "highcharts": "^8.1.0",
     "highcharts-angular": "^2.4.0",
     "jquery": "^3.5.1",
+    "ng2-file-upload": "^1.4.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

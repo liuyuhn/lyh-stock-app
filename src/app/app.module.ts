@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CommonModule }     from '@angular/common';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +25,9 @@ import { GenerateChartComponent } from './user/generate-chart/generate-chart.com
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ChangePassComponent } from './user/change-pass/change-pass.component';
 import { ImportDataComponent } from './admin/import-data/import-data.component';
+import { ManageCompanyComponent } from './admin/manage-company/manage-company.component';
+import { ManageExchangeComponent } from './admin/manage-exchange/manage-exchange.component';
+import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
 
 
 @NgModule({
@@ -44,6 +49,9 @@ import { ImportDataComponent } from './admin/import-data/import-data.component';
     SignUpComponent,
     ChangePassComponent,
     ImportDataComponent,
+    ManageCompanyComponent,
+    ManageExchangeComponent,
+    UpdateIpoComponent
   ],
   imports: [
     BrowserModule, 
@@ -51,6 +59,8 @@ import { ImportDataComponent } from './admin/import-data/import-data.component';
     AppRoutingModule,
     NgbModule,
     HighchartsChartModule,
+    FileUploadModule,
+    CommonModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'user-home', component: UserComponent },

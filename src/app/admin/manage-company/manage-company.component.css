@@ -1,0 +1,72 @@
+.subtitle{
+   font-size: 12px;
+}
+.column{
+    padding: 0.60rem !important
+}
+.button-st{
+    font-weight: normal;
+    background-color: #75a8db;
+    border-radius: 7px !important;
+    color: #012549;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2)
+}
+.input{
+    border-radius: 7px;
+    margin: 5px 0px;
+    height: 32px;
+    border-color: #c0cddb;
+}
+.form-group{
+    margin-bottom: 5px;
+}
+.label_board{
+    margin: 5px 5px;
+    /* color: #012549; */
+}
+.label_list{
+    margin: 5px 30px;
+    /* color: #012549; */
+}
+.label_sector{
+    margin: 5px 24px;
+    /* color: #012549; */
+}
+.label_brief{
+    margin: 5px 23px;
+    /* color: #012549; */
+}
+.label_stock{
+    margin: 5px 29px;
+    /* color: #012549; */
+}
+.label_status{
+    margin: 5px 12px;
+    /* color: #012549; */
+}
+.label_ceo{
+    margin: 5px 55px;
+    /* color: #012549; */
+}
+.label_turn{
+    margin: 5px 25px;
+    /* color: #012549; */
+}
+.label_name{
+    margin: 5px 15px;
+    /* color: #012549; */
+}
+.label_code{
+    margin: 5px 18px;
+    /* color: #012549; */
+}
+.custom-select{
+    width: 45% !important;
+    padding: .1rem 1.75rem .1rem .75rem;
+    font-size: 0.9rem;
+    height: 32px;
+    border-radius: 7px;
+    border-width: 2.2px;
+    border-color: #c0cddb;
+}
+

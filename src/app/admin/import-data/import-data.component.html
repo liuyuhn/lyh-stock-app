@@ -1,1 +1,6 @@
-<p>import-data works!</p>
+<fieldset>
+    <legend>Import Data</legend>
+    <input type="file" ng2FileSelect [uploader]="uploader" class="form-control" 
+    id="loadFile" name="loadFile">
+    <button (click)="uploadFile()">Upload</button>
+</fieldset>

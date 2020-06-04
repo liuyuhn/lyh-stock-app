@@ -1,0 +1,169 @@
+<table class="table table-striped">
+    <thead>
+        <tr class="subtitle">
+            <th scope="col">Company Code</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Turnovers($)</th>
+            <th scope="col">CEO</th>
+            <th scope="col">Board of Directors</th>
+            <th scope="col">Listed in SE</th>
+            <th scope="col">Sector Name</th>
+            <th scope="col">Brief Writeup</th>
+            <th scope="col">Stock Code</th>
+            <th scope="col">Company Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>111111</td>
+            <td>TOYOYA</td>
+            <td>8746734.00</td>
+            <td>Rose</td>
+            <td>Group director</td>
+            <td>Yes</td>
+            <td>Auto</td>
+            <td>Japan cars</td>
+            <td>776453</td>
+            <td>Actived</td>
+            <td class="column">
+                <button class="btn btn-sm button-st" (click)="open(content)"
+                onmouseover="this.style.backgroundColor='#4c7cac';"
+                onmouseout="this.style.backgroundColor='#75a8db';">
+                Edit</button></td>
+        </tr>
+        <tr>
+            <td>222222</td>
+            <td>BMW</td>
+            <td>4675539.00</td>
+            <td>Jack</td>
+            <td>Group director</td>
+            <td>No</td>
+            <td>Auto</td>
+            <td>Germen cars</td>
+            <td>456329</td>
+            <td>Actived</td>
+            <td class="column">
+                <button class="btn btn-sm button-st" (click)="open(content)"
+                onmouseover="this.style.backgroundColor='#4c7cac';"
+                onmouseout="this.style.backgroundColor='#75a8db';">
+                Edit</button></td>
+        </tr>
+        <tr >
+            <td>333333</td>
+            <td>Amarni</td>
+            <td>4562234.00</td>
+            <td>Rainbow</td>
+            <td>Group director</td>
+            <td>Yes</td>
+            <td>Make up</td>
+            <td>Beauty</td>
+            <td>456223</td>
+            <td>Actived</td>
+            <td class="column">
+                <button class="btn btn-sm button-st" (click)="open(content)"
+                onmouseover="this.style.backgroundColor='#4c7cac';"
+                onmouseout="this.style.backgroundColor='#75a8db';">
+                Edit</button></td>
+        </tr>
+        <tr>
+            <td>444444</td>
+            <td>Dior</td>
+            <td>4563834.00</td>
+            <td>Hermn</td>
+            <td>Group director</td>
+            <td>No</td>
+            <td>Make up</td>
+            <td>Lipstick</td>
+            <td>4453339</td>
+            <td>Actived</td>
+            <td class="column">
+                <button class="btn btn-sm button-st" (click)="open(content)" 
+                onmouseover="this.style.backgroundColor='#4c7cac';"
+                onmouseout="this.style.backgroundColor='#75a8db';">
+                Edit</button></td>
+        </tr>
+        <tr>
+            <td>555555</td>
+            <td>Mac</td>
+            <td>4534532.00</td>
+            <td>Heedy</td>
+            <td>Group director</td>
+            <td>Yes</td>
+            <td>Make up</td>
+            <td>foundation make-up</td>
+            <td>354446</td>
+            <td>Actived</td>
+            <td class="column">
+                <button class="btn btn-sm button-st" (click)="open(content)"
+                onmouseover="this.style.backgroundColor='#4c7cac';"
+                onmouseout="this.style.backgroundColor='#75a8db';">
+                Edit</button></td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+      <form [formGroup]="manageComForm">
+        <div class="form-group">
+            <label class="label_code">Comoany Code:</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_name">Comoany Name:</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_turn">Turnovers($):</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_ceo">CEO:</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_board">Board of Directors:</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_list">Listed in SE:</label>
+            <select class="custom-select">
+                <option selected>Please select...</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="label_sector">Sector Name:</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_brief">Brief Writeup:</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_stock">Stock Code:</label>
+            <input type="text" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label_status">Company Status:</label>
+            <select class="custom-select">
+                <option selected>Please select...</option>
+                <option>Deactivated</option>
+                <option>Activated</option>
+            </select>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>
+  
+  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
