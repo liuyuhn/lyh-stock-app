@@ -1,6 +1,9 @@
 .subtitle{
    font-size: 12px;
 }
+.item{
+    font-size: 13px;
+}
 .column{
     padding: 0.60rem !important
 }
@@ -41,7 +44,7 @@
     /* color: #012549; */
 }
 .label_status{
-    margin: 5px 12px;
+    margin: 5px 49px;
     /* color: #012549; */
 }
 .label_ceo{

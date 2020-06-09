@@ -4,14 +4,14 @@
         <div class="inp-positon">
             <input class="input" type="text" formControlName="userName" required
             placeholder="User Name...">
-            <!-- this.loginForm.value.userName -->
         </div>
         <div class="inp-positon">
             <input class="input" type="text" formControlName="passWord" required
             placeholder="Password...">
         </div>
-        <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">
-            Check out our awesome new features!</ngb-alert>
+        <!-- <p>value:{{loginForm.value | json }}</p> -->
+        <ngb-alert *ngIf="!loginForm.value" (close)="staticAlertClosed = true">
+            Please input your username!</ngb-alert>
         <div class="positon">
             <button class="btn btn-large button-st" [disabled]="!loginForm.valid"
             onmouseover="this.style.backgroundColor='#4c7cac';"

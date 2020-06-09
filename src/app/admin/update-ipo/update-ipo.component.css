@@ -1,0 +1,39 @@
+.button-st{
+    font-weight: normal;
+    background-color: #75a8db;
+    border-radius: 7px !important;
+    color: #012549;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2)
+}
+.input{
+    border-radius: 7px;
+    margin: 5px 0px;
+    height: 32px;
+    border-color: #c0cddb;
+}
+.form-group{
+    margin-bottom: 5px;
+}
+.label_comname{
+    margin: 5px 32px;
+    /* color: #012549; */
+}
+.label_stockexchange{
+    margin: 5px 32px;
+    /* color: #012549; */
+}
+.label_pershare{
+    margin: 5px 34px;
+    /* color: #012549; */
+}
+.label_totalnum{
+    margin: 5px 5px;
+    /* color: #012549; */
+}
+.label_opendate{
+    margin: 5px 32px;
+    /* color: #012549; */
+}
+.label_remarks{
+    margin: 5px 60px;
+}

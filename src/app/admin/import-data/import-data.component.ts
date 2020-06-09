@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 // import { UploadService } from '../../../service/fileupload.service';
-
 @Component({
   selector: 'app-import-data',
   templateUrl: './import-data.component.html',
   styleUrls: ['./import-data.component.css']
 })
 export class ImportDataComponent implements OnInit {
+  selectedFile = null;
   public uploader: FileUploader = new FileUploader({
-    // url: this.config.rootUrl + "/images/upload", //上传地址
+    url: "api/excel/import", //上传地址
     method: "POST",  //上传方式
-    itemAlias: "loadFile",  //别名（后台接受参数名）
+    itemAlias: "file",  //别名（后台接受参数名）
     autoUpload: false  //是否自动上传（如果为true，则在input选择完后自动上传）
   });
+  selectedFileOnChanged(event: any){
+    console.log(event.target.value);
+    this.selectedFile = event.target.value
+  }
   uploadFile() {
     //附加额外参数
       this.uploader.setOptions({
@@ -36,9 +40,8 @@ export class ImportDataComponent implements OnInit {
         }
       }
     }
-  constructor() { }
-
+    constructor() { 
+    }
   ngOnInit(): void {
   }
-
 }

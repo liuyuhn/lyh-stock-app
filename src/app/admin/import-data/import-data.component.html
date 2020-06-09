@@ -1,6 +1,15 @@
 <fieldset>
     <legend>Import Data</legend>
-    <input type="file" ng2FileSelect [uploader]="uploader" class="form-control" 
-    id="loadFile" name="loadFile">
-    <button (click)="uploadFile()">Upload</button>
+    <input #fileSelect style="display:none" type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" />
+    <p style="border: 1px solid #003366; border-radius:7px; height: 35px">{{selectedFile}}</p>
+    <button (click)="fileSelect.click()" class="btn btn-sm button-st"
+    onmouseover="this.style.backgroundColor='#4c7cac';"
+    onmouseout="this.style.backgroundColor='#75a8db';">
+    Browser</button>
+    <!-- <input type="file" ng2FileSelect [uploader]="uploader" class="form-control" 
+    id="loadFile" name="loadFile"> -->
+    <button (click)="uploadFile()" class="btn btn-sm button-se"
+    onmouseover="this.style.backgroundColor='#4c7cac';"
+    onmouseout="this.style.backgroundColor='#75a8db';">
+    Upload</button>
 </fieldset>

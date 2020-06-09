@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   staticAlertClosed = true;
-  loginForm = new FormGroup({
-    userName: new FormControl(''),
-    passWord: new FormControl(''),
+  loginForm = this.fb.group({
+    userName: ['', Validators.required],
+    passWord: ['', Validators.required],
   });
-  constructor(private router: Router) { }
+  constructor(private router: Router,private fb: FormBuilder) { }
   onSubmit() {
     if (this.loginForm.value.userName === 'lyh') {
       this.router.navigate(['admin-home']);
@@ -26,12 +26,13 @@ export class LoginComponent implements OnInit {
     console.log('logform',this.loginForm.value)
     console.warn(this.loginForm.value);
   }
+
   changeAlert(){
     this.staticAlertClosed = false
   }
 
   ngOnInit(): void {
-    console.log('logform',this.loginForm.value)
+    console.log('logformonnit',this.loginForm.value)
   }
 
 }

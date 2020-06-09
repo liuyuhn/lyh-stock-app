@@ -1,13 +1,13 @@
 <!-- //firstchart -->
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" style="text-align: left;">
+<form [formGroup]="firstchartForm" (ngSubmit)="onSubmit()" style="text-align: left;">
     <fieldset style="width: 590px; margin: 60px auto 20px; padding: 20px; border: 1px solid #336699">
         <label class="custom-control-inline">Specify Periodicity:
             <div class="d-flex flex-wrap align-content-between">
-                <select class="custom-select" style="margin-left: 58px;">
-                    <option selected>Please select...</option>
-                    <option>One month</option>
-                    <option>Two months</option>
-                    <option>Three months</option>
+                <select class="custom-select" style="margin-left: 58px;" formControlName="specify">
+                    <option selected>Indiacte desired date range</option>
+                    <option>Week</option>
+                    <option>Month</option>
+                    <option>Year</option>
                 </select>
             </div>
         </label>
@@ -15,7 +15,7 @@
             Time Period:
             <div class="form-group hidden">
                 <div class="input-group">
-                    <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker="ngbDatepicker"
+                    <input name="dateonepicker" class="form-control hidden" ngbDatepicker #dateonepicker="ngbDatepicker"
                         [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
                         [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!">
                     <ng-template #t let-date let-focused="focused">
@@ -30,26 +30,29 @@
             <div class="form-group" style="margin-left: 105px; margin-bottom: 0px;">
                 <div class="input-group">
                     <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-                        [value]="formatter.format(fromDate)"
+                        [value]="formatter.format(fromDate)" formControlName="fromdate"
                         (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
-                    <div class="input-group-append">
-                        <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
+                        <div class="input-group-append">
+                            <button class="material-icons" (click)="dateonepicker.toggle()" type="button">date_range</button>
+                        </div>
                     </div>
-                </div>
+                    <p>{{formatter.format(fromDate)}}</p>
+                    <p>{{formatter.format(toDate)}}</p>
             </div>
             <div class="form-group ml-2" style="margin-bottom: 0px;">
                 <div class="input-group">
                     <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
-                        [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)">
+                        [value]="formatter.format(toDate)" formControlName="todate"
+                        (input)="toDate = validateInput(toDate, dpToDate.value)">
                     <div class="input-group-append">
-                        <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
+                        <button class="material-icons" (click)="dateonepicker.toggle()" type="button">date_range</button>
                     </div>
                 </div>
             </div>
         </label>
         <label class="custom-control-inline">Select Company/Sector:
             <div class="d-flex flex-wrap align-content-between">
-                <select class="custom-select">
+                <select class="custom-select" formControlName="coorse">
                     <option selected>Please select...</option>
                     <option>Company</option>
                     <option>Sector</option>
@@ -59,7 +62,7 @@
         <div>
             <label class="custom-control-inline">Select Stock Exchange:
                 <div class="d-flex flex-wrap align-content-between">
-                    <select class="custom-select" style="margin-left: 24px;">
+                    <select class="custom-select" style="margin-left: 24px;" formControlName="stockex">
                         <option selected>Please select...</option>
                         <option>BSE</option>
                         <option>NSE</option>
@@ -69,7 +72,7 @@
         </div>
         <label class="custom-control-inline">Company Name:
             <div class="d-flex flex-wrap align-content-between">
-                <select class="custom-select" style="margin-left: 74px;">
+                <select class="custom-select" style="margin-left: 74px;" formControlName="comname">
                     <option selected>Please select...</option>
                     <option>YPO</option>
                     <option>JPG</option>
@@ -79,17 +82,19 @@
                 </select>
             </div>
         </label>
+        <p>value:{{firstchartForm.value | json }}</p>
+
         <div style="text-align:right">
             <!-- <button type="submit" class="btn btn-large button_st" [disabled]="!profileForm.valid" 
             onmouseover="this.style.backgroundColor='#4c7cac';"
             onmouseout="this.style.backgroundColor='#75a8db';" 
             (click)="genMap()">
             Generate Map</button> -->
-            <button type="submit" class="btn btn-large button_st" [disabled]="!profileForm.valid"
+            <button type="submit" class="btn btn-large button_st" [disabled]="!firstchartForm.valid"
                 onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
-                (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="genChart">
+                [attr.aria-expanded]="!isCollapsed" aria-controls="genChart">
                 Generate Chart</button>
-            <button type="add" class="btn btn-large button_st" [disabled]="!profileForm.valid"
+            <button type="add" class="btn btn-large button_st"
                 onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
                 (click)="isComCollapsed = !isComCollapsed" [attr.aria-expanded]="!isComCollapsed"
                 aria-controls="comChart">
@@ -99,11 +104,11 @@
 </form>
 <!--firstchart//-->
 <!-- //compare chart -->
-<form [formGroup]="subForm" (ngSubmit)="onSubmit()" [ngbCollapse]="isComCollapsed" id="comChart">
+<form [formGroup]="secondchartForm" (ngSubmit)="onSubmit()" [ngbCollapse]="isComCollapsed" id="comChart">
     <fieldset style=" width: 590px; margin: 60px auto 20px; padding: 20px; border: 1px solid #336699">
         <label class="custom-control-inline">Specify Periodicity:
             <div class="d-flex flex-wrap align-content-between">
-                <select class="custom-select" style="margin-left: 58px;">
+                <select class="custom-select" style="margin-left: 58px;" formControlName="specify">
                     <option selected>Please select...</option>
                     <option>One month</option>
                     <option>Two months</option>
@@ -130,7 +135,7 @@
             <div class="form-group" style="margin-left: 105px; margin-bottom: 0px;">
                 <div class="input-group">
                     <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-                        [value]="formatter.format(fromDate)"
+                        [value]="formatter.format(fromDate)" formControlName="fromdate"
                         (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
                     <div class="input-group-append">
                         <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
@@ -140,16 +145,19 @@
             <div class="form-group ml-2" style="margin-bottom: 0px;">
                 <div class="input-group">
                     <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
-                        [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)">
+                        [value]="formatter.format(toDate)"  formControlName="todate"
+                        (input)="toDate = validateInput(toDate, dpToDate.value)">
                     <div class="input-group-append">
                         <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
                     </div>
                 </div>
+                    <p>{{formatter.format(fromDate)}}</p>
+                    <p>{{formatter.format(toDate)}}</p>
             </div>
         </label>
         <label class="custom-control-inline">Select Company/Sector:
             <div class="d-flex flex-wrap align-content-between">
-                <select class="custom-select">
+                <select class="custom-select" formControlName="coorse">
                     <option selected>Please select...</option>
                     <option>Company</option>
                     <option>Sector</option>
@@ -159,7 +167,7 @@
         <div>
             <label class="custom-control-inline">Select Stock Exchange:
                 <div class="d-flex flex-wrap align-content-between">
-                    <select class="custom-select" style="margin-left: 24px;">
+                    <select class="custom-select" style="margin-left: 24px;" formControlName="stockex">
                         <option selected>Please select...</option>
                         <option>BSE</option>
                         <option>NSE</option>
@@ -169,7 +177,7 @@
         </div>
         <label class="custom-control-inline">Company Name:
             <div class="d-flex flex-wrap align-content-between">
-                <select class="custom-select" style="margin-left: 74px;">
+                <select class="custom-select" style="margin-left: 74px;" formControlName="comname">
                     <option selected>Please select...</option>
                     <option>YPO</option>
                     <option>JPG</option>
@@ -180,9 +188,9 @@
             </div>
         </label>
         <div style="text-align:right">
-            <button type="submit" class="btn btn-large button_st" [disabled]="!profileForm.valid"
+            <button (click)="submit" class="btn btn-large button_st" [disabled]="!secondchartForm.valid"
                 onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
-                (click)="isSubCollapsed = !isSubCollapsed" [attr.aria-expanded]="!isSubCollapsed"
+                [attr.aria-expanded]="!isSubCollapsed"
                 aria-controls="genComChart">
                 Generate Chart</button>
         </div>

@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule }     from '@angular/common';
 import { FileUploadModule } from 'ng2-file-upload';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,8 +16,6 @@ import { TopBarComponent } from './my-component/top-bar/top-bar.component';
 import { LoginComponent } from './login/login.component';
 import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { ServiceComponent } from './service/service.component'; 
-import { DynamicFormComponent } from './user/dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent } from './user/dynamic-form-question/dynamic-form-question.component';
 import { ClassComponent } from './class/class.component';
 import { CompareListComponent } from './user/compare-list/compare-list.component';
 import { IPOListComponent } from './user/ipo-list/ipo-list.component';
@@ -29,6 +28,9 @@ import { ManageCompanyComponent } from './admin/manage-company/manage-company.co
 import { ManageExchangeComponent } from './admin/manage-exchange/manage-exchange.component';
 import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
 
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+// // import module
+// import { ElModule } from 'element-angular'
 
 @NgModule({
   declarations: [
@@ -40,8 +42,6 @@ import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
     LoginComponent,
     UserNavComponent,
     ServiceComponent,
-    DynamicFormComponent,
-    DynamicFormQuestionComponent,
     ClassComponent, 
     CompareListComponent,
     IPOListComponent,
@@ -61,6 +61,10 @@ import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
     HighchartsChartModule,
     FileUploadModule,
     CommonModule,
+    FormsModule,
+    HttpClientModule,
+    // BrowserAnimationsModule,
+    // ElModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'user-home', component: UserComponent },
@@ -70,7 +74,7 @@ import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(){

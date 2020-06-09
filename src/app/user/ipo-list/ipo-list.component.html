@@ -3,58 +3,27 @@
         <tr>
             <th scope="col">IPOID</th>
             <th scope="col">Comoany Name</th>
-            <th scope="col">StockExchange</th>
-            <th scope="col">Price per share</th>
-            <th scope="col">Total number of Shares</th>
+            <th scope="col">Stock Exchange</th>
+            <th scope="col">Price Per Share</th>
+            <th scope="col">Total Number of Shares</th>
             <th scope="col">Open Date Time</th>
             <th scope="col">Remarks</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>YPO</td>
-            <td>BSE</td>
-            <td>80</td>
-            <td>20000</td>
-            <td>2020/06/15</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>JPG</td>
-            <td>NSE</td>
-            <td>70</td>
-            <td>7777</td>
-            <td>2002/05/12</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>DWK</td>
-            <td>NSE</td>
-            <td>70</td>
-            <td>7777</td>
-            <td>2002/05/12</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>HFJ</td>
-            <td>BSE</td>
-            <td>300</td>
-            <td>77245</td>
-            <td>1999/02/19</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>JPG</td>
-            <td>NSE</td>
-            <td>70</td>
-            <td>50937</td>
-            <td>2005/09/12</td>
-            <td></td>
+        <tr *ngFor="let ipolist of ipolists; let i = index" class="item">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ipolist.comname}}</td>
+            <td>{{ipolist.stockexchange}}</td>
+            <td>{{ipolist.pershare}}</td>
+            <td>{{ipolist.totalnum}}</td>
+            <td>{{ipolist.opendate}}</td>
+            <td>{{ipolist.remarks}}</td>
+            <!-- <td class="column">
+                <button class="btn btn-sm button-st" (click)="open(content,i)"
+                onmouseover="this.style.backgroundColor='#4c7cac';"
+                onmouseout="this.style.backgroundColor='#75a8db';">
+                Edit</button></td> -->
         </tr>
     </tbody>
 </table>

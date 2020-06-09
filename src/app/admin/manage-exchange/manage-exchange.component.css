@@ -1,0 +1,45 @@
+.column{
+    padding: 0.60rem !important
+}
+.item{
+    font-size: 15px;
+}
+.button-st{
+    font-weight: normal;
+    background-color: #75a8db;
+    border-radius: 7px !important;
+    color: #012549;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2)
+}
+/* .table {
+    width: 60%;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: 250px;
+    margin-top: 50px;
+} */
+.input{
+    border-radius: 7px;
+    margin: 5px 0px;
+    height: 32px;
+    border-color: #c0cddb;
+}
+.form-group{
+    margin-bottom: 5px;
+}
+.label_stockchange{
+    margin: 5px 14px;
+    /* color: #012549; */
+}
+.label_exbrief{
+    margin: 5px 49px;
+    /* color: #012549; */
+}
+.label_conaddress{
+    margin: 5px 5px;
+    /* color: #012549; */
+}
+.label_remark{
+    margin: 5px 34px;
+    /* color: #012549; */
+}

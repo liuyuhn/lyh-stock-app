@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import * as Highcharts from 'highcharts';
-// import { QuestionService } from 'src/app/service/question.service';
-// import { QuestionBase }    from 'src/app/class/question-base';
-// import { Observable }      from 'rxjs';
-
 
 @Component({
   selector: 'app-compare-list',
@@ -17,26 +13,37 @@ export class CompareListComponent {
   public isComCollapsed = true;
   public isSubCollapsed = true;
   public isMerCollapsed = true;
-  profileForm = new FormGroup({
-    // spePeriod: new FormControl(''),
-    // lastName: new FormControl(''),
+  firstchartForm = this.fb.group({
+    specify: ['', Validators.required],
+    fromdate: [''],
+    todate: [''],
+    coorse: ['', Validators.required],
+    stockex: ['', Validators.required],
+    comname: ['', Validators.required]
   });
-  subForm = new FormGroup({
-    // spePeriod: new FormControl(''),
-    // lastName: new FormControl(''),
+  secondchartForm = this.fb.group({
+    specify: ['', Validators.required],
+    fromdate: [''],
+    todate: ['', Validators.required],
+    coorse: ['', Validators.required],
+    stockex: ['', Validators.required],
+    comname: ['', Validators.required]
   });
+
   hoveredDate: NgbDate | null = null;
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private fb: FormBuilder) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+      
   }
 
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
+      console.log('date',date)
     } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
       this.toDate = date;
     } else {
@@ -59,11 +66,51 @@ export class CompareListComponent {
 
   validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
     const parsed = this.formatter.parse(input);
+    // console.log('parse(input)',this.formatter)
+    // console.log(111111111111111)
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
+
+  // datepicker(fromDate,toDate){
+  //   this.firstchartForm.setValue({
+  //     specify: this.firstchartForm.value.specify,
+  //     fromdate: this.formatter.format(fromDate),
+  //     todate: this.formatter.format(toDate),
+  //     coorse: this.firstchartForm.value.coorse,
+  //     stockex: this.firstchartForm.value.stockex,
+  //     comname: this.firstchartForm.value.comname
+  //   })
+  // }
+
+
   onSubmit() {
+    this.isCollapsed = !this.isCollapsed
     // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
+    this.firstchartForm.setValue({
+          specify: this.firstchartForm.value.specify,
+          fromdate: this.formatter.format(this.fromDate),
+          todate: this.formatter.format(this.toDate),
+          coorse: this.firstchartForm.value.coorse,
+          stockex: this.firstchartForm.value.stockex,
+          comname: this.firstchartForm.value.comname
+        })
+    console.warn(this.firstchartForm.value);
+    console.log('jjjjjjj)',this.firstchartForm.value)
+  }
+
+  submit() {
+    this.isSubCollapsed = !this.isSubCollapsed
+    // TODO: Use EventEmitter with form value
+    this.secondchartForm.setValue({
+          specify: this.secondchartForm.value.specify,
+          fromdate: this.formatter.format(this.fromDate),
+          todate: this.formatter.format(this.toDate),
+          coorse: this.secondchartForm.value.coorse,
+          stockex: this.secondchartForm.value.stockex,
+          comname: this.secondchartForm.value.comname
+        })
+    console.warn('第二个表',this.secondchartForm.value);
+    console.log('tttttt)',this.secondchartForm.value)
   }
   //highchart
   Highcharts = Highcharts;
@@ -91,13 +138,14 @@ export class CompareListComponent {
     series: [{
       name: 'first company',
       data: [11, 22, 33, 44, 55, 66]
-  }, {
+    }, {
       name: 'compare company',
       data: [13, 15, 39, 38, 66, 49]
-  }]
+    }]
   };
   ngOnInit() {
-    this.ngOnInit
+    this.fromDate
+    this.toDate
     console.log('1', this.chartOptions)
     console.log('2', this.Highcharts)
   }
