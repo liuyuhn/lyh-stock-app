@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { AdminService } from 'src/app/service/admin.service'
+
 //--数据接口和假数据
 interface companyInfo {
   code: number;
@@ -98,13 +100,25 @@ export class ManageCompanyComponent implements OnInit {
     stock: ['', Validators.required],
     inuse: ['', Validators.required]
   })
-  updatemanageComForm = {}
+  updatemanageComForm = this.fb.group({
+    code: ['', Validators.required],
+    name: ['', Validators.required],
+    turnovers: ['', Validators.required],
+    ceo: ['', Validators.required],
+    board: ['', Validators.required],
+    list: ['', Validators.required],
+    sector: ['', Validators.required],
+    brief: ['', Validators.required],
+    stock: ['', Validators.required],
+    inuse: ['', Validators.required]
+  })
   
-  constructor(private fb: FormBuilder, private modalService: NgbModal) { }
+  constructor(private fb: FormBuilder, private modalService: NgbModal,public AdminService: AdminService) { }
   //--弹出框
   closeResult = '';
   open(content, index) {
     console.log('111111index', index)
+    console.log('code', this.cominfos[index].code)
     // this.cominfos(index,1)
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -146,23 +160,34 @@ export class ManageCompanyComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    //弹出框的input框里拿到当前选中数据的值--
-    console.log('cominfo', this.cominfos)
-    console.log('manageComForm', this.manageComForm)
   }
 
   //--获取弹出框update的值
  
   onSubmit() {
-    // console.log('222222',this.manageComForm.value)
     // TODO: Use EventEmitter with form value
     console.warn(this.manageComForm.value);
-    // this.cominfo = this.manageComForm.value
+    this.AdminService.postEditCom(this.manageComForm.value).subscribe((msg) => {
+      console.log(msg)
+      // this.result = data
+    })
   }
   
+  updateSubmit(){
+    console.warn(this.updatemanageComForm.value);
+    this.AdminService.postUpdateCom(this.updatemanageComForm.value).subscribe((msg) => {
+      console.log(msg)
+      // this.result = data
+    })
+  }
+
   //获取弹出框update的值--
   ngOnInit(): void {
-    // this.cominfos
+    this.cominfos
+    this.AdminService.getComList().subscribe((data) => {
+      console.log(data)
+      // this.cominfos = data
+    })
     console.log('cominfo11111', this.cominfos)
     console.log('lllllllll', this.manageComForm)
   }

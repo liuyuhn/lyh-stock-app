@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/service/user.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http' 
 
 interface ipolistinfo{
   comname:string;
@@ -66,9 +68,13 @@ const IPOLISTS: ipolistinfo[] =[
 })
 export class IPOListComponent implements OnInit {
   ipolists=IPOLISTS
-  constructor() { }
+  constructor(public UserService: UserService,private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.UserService.getIpoList().subscribe((data) => {
+        console.log(data)
+        // this.ipolists = data
+      })
   }
 
 }

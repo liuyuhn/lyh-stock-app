@@ -1,19 +1,27 @@
-<fieldset>
+<fieldset [formGroup]="changepassForm" (ngSubmit)="onSubmit()">
     <legend>Change Password</legend>
     <div class="inp-positon">
         <label class="label_name" disabled>Name</label>
-        <input class="input" type="text" disabled>
+        <input class="input" type="text" formControlName="name">
     </div>
     <div class="inp-positon">
         <label class="label_pass">New Password</label>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="pass" #box (keyup)="onKey(box.value)">
+        <!-- <p>{{values}}</p> -->
     </div>
     <div class="inp-positon">
         <label class="label_confirm">Confrim Password</label>
-        <input class="input" type="text">
+        <input class="input" type="text" formControlName="newpass" #box2 (keyup)="onconfirmKey(box2.value)">
+        <!-- <p>{{confirmvalues}}</p> -->
     </div>
+    <p>
+        <ngb-alert *ngIf="values && confirmvalues && confirmvalues!=values">
+          <strong>Warning!</strong> The newpassword is incorrect.
+        </ngb-alert>
+      </p>
+    <p>value:{{changepassForm.value|json}}</p>
     <div class="positon">
-        <button class="btn btn-large button-st" 
+        <button type="submit" class="btn btn-large button-st" [disabled]="!changepassForm.valid"
         onmouseover="this.style.backgroundColor='#4c7cac';" 
         onmouseout="this.style.backgroundColor='#75a8db';">Submit</button>
     </div>

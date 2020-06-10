@@ -114,7 +114,7 @@
       </button>
     </div>
     <div class="modal-body" style="text-align: center;">
-      <form [formGroup]="manageComForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="updatemanageComForm" (ngSubmit)="updateSubmit()">
         <div class="form-group">
             <label class="label_code">Comoany Code:</label>
             <input type="text" class="input" formControlName="code">
@@ -137,7 +137,7 @@
           </div>
           <div class="form-group">
             <label class="label_list">Listed in SE:</label>
-            <select class="custom-select" formControlName="list" placeholder="manageComForm.value.list">
+            <select class="custom-select" formControlName="list">
                 <!-- <option selected>{{manageComForm.value.list}}</option> -->
                 <option>Yes</option>
                 <option>No</option>
@@ -158,14 +158,14 @@
           <div class="form-group">
             <label class="label_status">In Use:</label>
             <!-- <p>{{manageComForm.value.use}}</p> -->
-            <select class="custom-select" formControlName="inuse" placeholder="manageComForm.value.inuse">
+            <select class="custom-select" formControlName="inuse">
               <option>Yes</option>
               <option>No</option>
             </select>
           </div>
-          <p>value:{{manageComForm.value | json }}</p>
+          <p>value:{{updatemanageComForm.value | json }}</p>
           <div style="text-align: right;">
-          <button type="submit" class="btn btn-outline-dark" [disabled]="!manageComForm.valid">Submit</button>
+          <button type="submit" class="btn btn-outline-dark" [disabled]="!updatemanageComForm.valid">Submit</button>
         </div>
         </form>
     </div>

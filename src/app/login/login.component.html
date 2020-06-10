@@ -13,7 +13,7 @@
         <ngb-alert *ngIf="!loginForm.value" (close)="staticAlertClosed = true">
             Please input your username!</ngb-alert>
         <div class="positon">
-            <button class="btn btn-large button-st" [disabled]="!loginForm.valid"
+            <button type="submit"  class="btn btn-large button-st" [disabled]="!loginForm.valid"
             onmouseover="this.style.backgroundColor='#4c7cac';"
             onmouseout="this.style.backgroundColor='#75a8db';" 
             (click)="changeAlert()">
@@ -21,6 +21,7 @@
         </div>
     </fieldset>
 </form>
+
 <div style="text-align: center;margin: 0 0 0 270px;">
     <!-- <button class="btn btn-large button-st" 
         onmouseover="this.style.backgroundColor='#4c7cac';" 

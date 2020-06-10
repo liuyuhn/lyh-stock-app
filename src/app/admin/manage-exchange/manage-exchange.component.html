@@ -72,7 +72,7 @@
       </button>
     </div>
     <div class="modal-body" style="text-align: center;">
-      <form [formGroup]="manageExForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="manageAddExForm" (ngSubmit)="addSubmit()">
         <div class="form-group">
             <label class="label_stockchange">Stock Change:</label>
             <input type="text" class="input" formControlName="stockchange">
@@ -89,9 +89,9 @@
             <label class="label_remark">Remarks:</label>
             <input type="text" class="input" formControlName="remark">
           </div>
-          <p>value:{{manageExForm.value | json }}</p>
+          <p>value:{{manageAddExForm.value | json }}</p>
           <div style="text-align: right;">
-          <button type="submit" class="btn btn-outline-dark" [disabled]="!manageExForm.valid">Submit</button>
+          <button type="submit" class="btn btn-outline-dark" [disabled]="!manageAddExForm.valid">Submit</button>
         </div>
         </form>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { AdminService } from 'src/app/service/admin.service'
 
 interface exchangeInfo {
   // id: number;
@@ -40,8 +41,14 @@ export class ManageExchangeComponent implements OnInit {
     conaddress: ['', Validators.required],
     remark: ['', Validators.required] 
   })
+  manageAddExForm = this.fb.group({
+    stockchange: ['', Validators.required],
+    exbrief: ['', Validators.required],
+    conaddress: ['', Validators.required],
+    remark: ['', Validators.required] 
+  })
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal) { }
+  constructor(private fb: FormBuilder, private modalService: NgbModal, public AdminService:AdminService) { }
 
   closeResult = '';
   open(content, index) {
@@ -72,8 +79,6 @@ export class ManageExchangeComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
     //弹出框的input框里拿到当前选中数据的值--
-    console.log('cominfo', this.exinfos)
-    console.log('manageExForm', this.manageExForm)
   }
   //--弹出框的input框里拿到当前选中数据的值
   private getDismissReason(reason: any): string {
@@ -88,9 +93,25 @@ export class ManageExchangeComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.manageExForm.value);
+    this.AdminService.postUpExchange(this.manageExForm.value).subscribe((msg) => {
+      console.log(msg)
+      // this.result = data
+    })
+  }
+
+  addSubmit() {
+    console.warn(this.manageAddExForm.value);
+    this.AdminService.postAddExchange(this.manageAddExForm.value).subscribe((msg) => {
+      console.log(msg)
+      // this.result = data
+    })
   }
 
   ngOnInit(): void {
+    this.AdminService.getExchangeList().subscribe((data) => {
+      console.log(data)
+      // this.cominfos = data
+    })
   }
 
 }

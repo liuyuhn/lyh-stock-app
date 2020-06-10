@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { AdminService } from 'src/app/service/admin.service'
 
 interface ipoinfo{
   comname:string;
@@ -78,7 +79,7 @@ export class UpdateIpoComponent implements OnInit {
     remarks: ['', Validators.required] 
   })
    
-  constructor(private fb: FormBuilder, private modalService: NgbModal) { }
+  constructor(private fb: FormBuilder, private modalService: NgbModal, public AdminService:AdminService) { }
 
   closeResult = '';
   open(content, index) {
@@ -115,9 +116,17 @@ export class UpdateIpoComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.ipoForm.value);
+    this.AdminService.postUpIpo(this.ipoForm.value).subscribe((msg) => {
+      console.log(msg)
+      // this.result = data
+    })
   }
 
   ngOnInit(): void {
+    this.AdminService.getIpoDetail().subscribe((data) => {
+      console.log(data)
+      // this.cominfos = data
+    })
   }
 
 }

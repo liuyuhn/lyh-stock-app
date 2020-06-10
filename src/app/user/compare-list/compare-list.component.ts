@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/service/user.service'
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -15,102 +16,71 @@ export class CompareListComponent {
   public isMerCollapsed = true;
   firstchartForm = this.fb.group({
     specify: ['', Validators.required],
-    fromdate: [''],
-    todate: [''],
+    fromdate: ['', Validators.required],
+    todate: ['', Validators.required],
     coorse: ['', Validators.required],
     stockex: ['', Validators.required],
     comname: ['', Validators.required]
   });
   secondchartForm = this.fb.group({
     specify: ['', Validators.required],
-    fromdate: [''],
+    fromdate: ['', Validators.required],
     todate: ['', Validators.required],
     coorse: ['', Validators.required],
     stockex: ['', Validators.required],
     comname: ['', Validators.required]
   });
-
-  hoveredDate: NgbDate | null = null;
-  fromDate: NgbDate | null;
-  toDate: NgbDate | null;
-
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private fb: FormBuilder) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
-      
+  result: any;
+  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private fb: FormBuilder, public UserService: UserService) {
   }
 
-  onDateSelection(date: NgbDate) {
-    if (!this.fromDate && !this.toDate) {
-      this.fromDate = date;
-      console.log('date',date)
-    } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
-      this.toDate = date;
-    } else {
-      this.toDate = null;
-      this.fromDate = date;
-    }
-  }
-
-  isHovered(date: NgbDate) {
-    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
-  }
-
-  isInside(date: NgbDate) {
-    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
-  }
-
-  isRange(date: NgbDate) {
-    return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date);
-  }
-
-  validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
-    const parsed = this.formatter.parse(input);
-    // console.log('parse(input)',this.formatter)
-    // console.log(111111111111111)
-    return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
-  }
-
-  // datepicker(fromDate,toDate){
-  //   this.firstchartForm.setValue({
-  //     specify: this.firstchartForm.value.specify,
-  //     fromdate: this.formatter.format(fromDate),
-  //     todate: this.formatter.format(toDate),
-  //     coorse: this.firstchartForm.value.coorse,
-  //     stockex: this.firstchartForm.value.stockex,
-  //     comname: this.firstchartForm.value.comname
-  //   })
-  // }
-
+  //timrpicker拿值
+  model: NgbDateStruct;
+  models: NgbDateStruct;
+  modelt: NgbDateStruct;
+  modelf: NgbDateStruct;
 
   onSubmit() {
     this.isCollapsed = !this.isCollapsed
     // TODO: Use EventEmitter with form value
     this.firstchartForm.setValue({
-          specify: this.firstchartForm.value.specify,
-          fromdate: this.formatter.format(this.fromDate),
-          todate: this.formatter.format(this.toDate),
-          coorse: this.firstchartForm.value.coorse,
-          stockex: this.firstchartForm.value.stockex,
-          comname: this.firstchartForm.value.comname
-        })
+      specify: this.firstchartForm.value.specify,
+      fromdate: this.model,
+      todate: this.models,
+      coorse: this.firstchartForm.value.coorse,
+      stockex: this.firstchartForm.value.stockex,
+      comname: this.firstchartForm.value.comname
+    })
     console.warn(this.firstchartForm.value);
-    console.log('jjjjjjj)',this.firstchartForm.value)
+    this.UserService.postCompareCom(this.firstchartForm.value).subscribe((data) => {
+      console.log('data',data)//data为后台传来的返回消息
+      this.result = data
+      console.log('firstchart',this.result)
+    })
+    console.log('jjjjjjj)', this.firstchartForm.value)
   }
+  // result(arg0: string, result: any) {
+  //   throw new Error("Method not implemented.");
+  // }
 
-  submit() {
+  Submit() {
     this.isSubCollapsed = !this.isSubCollapsed
     // TODO: Use EventEmitter with form value
     this.secondchartForm.setValue({
-          specify: this.secondchartForm.value.specify,
-          fromdate: this.formatter.format(this.fromDate),
-          todate: this.formatter.format(this.toDate),
-          coorse: this.secondchartForm.value.coorse,
-          stockex: this.secondchartForm.value.stockex,
-          comname: this.secondchartForm.value.comname
-        })
-    console.warn('第二个表',this.secondchartForm.value);
-    console.log('tttttt)',this.secondchartForm.value)
+      specify: this.secondchartForm.value.specify,
+      fromdate: this.modelt,
+      todate: this.modelf,
+      coorse: this.secondchartForm.value.coorse,
+      stockex: this.secondchartForm.value.stockex,
+      comname: this.secondchartForm.value.comname
+    })
+    console.warn('第二个表', this.secondchartForm.value);
+    this.UserService.postCompareCom(this.secondchartForm.value).subscribe((data) => {
+      console.log('data',data)//data为后台传来的返回消息
+      this.result = data
+      console.log('secondchart',this.result)
+    })
+    console.log('tttttt)', this.secondchartForm.value)
   }
   //highchart
   Highcharts = Highcharts;
@@ -144,10 +114,10 @@ export class CompareListComponent {
     }]
   };
   ngOnInit() {
-    this.fromDate
-    this.toDate
-    console.log('1', this.chartOptions)
-    console.log('2', this.Highcharts)
+    // this.fromDate
+    // this.toDate
+    // console.log('1', this.chartOptions)
+    // console.log('2', this.Highcharts)
   }
   // genMap() {
   //   this.Highcharts = Highcharts

@@ -11,45 +11,34 @@
                 </select>
             </div>
         </label>
-        <label class="custom-control-inline">
-            Time Period:
-            <div class="form-group hidden">
-                <div class="input-group">
-                    <input name="dateonepicker" class="form-control hidden" ngbDatepicker #dateonepicker="ngbDatepicker"
-                        [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                        [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!">
-                    <ng-template #t let-date let-focused="focused">
-                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                            (mouseleave)="hoveredDate = null">
-                            {{ date.day }}
-                        </span>
-                    </ng-template>
-                </div>
-            </div>
-            <div class="form-group" style="margin-left: 105px; margin-bottom: 0px;">
-                <div class="input-group">
-                    <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-                        [value]="formatter.format(fromDate)" formControlName="fromdate"
-                        (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+        <label class="custom-control-inline">From Period
+            <form [formGroup]="firstchartForm" class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="fromdate" name="dp"
+                            [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" style="margin-left: 108px;">
                         <div class="input-group-append">
-                            <button class="material-icons" (click)="dateonepicker.toggle()" type="button">date_range</button>
+                            <button class="material-icons" (click)="d.toggle()" type="button">date_range</button>
                         </div>
                     </div>
-                    <p>{{formatter.format(fromDate)}}</p>
-                    <p>{{formatter.format(toDate)}}</p>
-            </div>
-            <div class="form-group ml-2" style="margin-bottom: 0px;">
-                <div class="input-group">
-                    <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
-                        [value]="formatter.format(toDate)" formControlName="todate"
-                        (input)="toDate = validateInput(toDate, dpToDate.value)">
-                    <div class="input-group-append">
-                        <button class="material-icons" (click)="dateonepicker.toggle()" type="button">date_range</button>
+                </div>
+            </form>
+        </label>
+        <!-- <pre>Model: {{ model | json }}</pre> -->
+        <label class="custom-control-inline">To Period
+            <form [formGroup]="firstchartForm" class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="todate" name="dp"
+                            [(ngModel)]="models" ngbDatepicker #ds="ngbDatepicker" style="margin-left: 127px;">
+                        <div class="input-group-append">
+                            <button class="material-icons" (click)="ds.toggle()" type="button">date_range</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </label>
+        <!-- <pre>Model: {{ model1 | json }}</pre> -->
         <label class="custom-control-inline">Select Company/Sector:
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" formControlName="coorse">
@@ -85,26 +74,20 @@
         <p>value:{{firstchartForm.value | json }}</p>
 
         <div style="text-align:right">
-            <!-- <button type="submit" class="btn btn-large button_st" [disabled]="!profileForm.valid" 
-            onmouseover="this.style.backgroundColor='#4c7cac';"
-            onmouseout="this.style.backgroundColor='#75a8db';" 
-            (click)="genMap()">
-            Generate Map</button> -->
-            <button type="submit" class="btn btn-large button_st" [disabled]="!firstchartForm.valid"
+            <button class="btn btn-large button_st" [disabled]="!firstchartForm.valid"
                 onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
                 [attr.aria-expanded]="!isCollapsed" aria-controls="genChart">
                 Generate Chart</button>
-            <button type="add" class="btn btn-large button_st"
-                onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
-                (click)="isComCollapsed = !isComCollapsed" [attr.aria-expanded]="!isComCollapsed"
-                aria-controls="comChart">
+            <button type="add" class="btn btn-large button_st" onmouseover="this.style.backgroundColor='#4c7cac';"
+                onmouseout="this.style.backgroundColor='#75a8db';" (click)="isComCollapsed = !isComCollapsed"
+                [attr.aria-expanded]="!isComCollapsed" aria-controls="comChart">
                 Add</button>
         </div>
     </fieldset>
 </form>
 <!--firstchart//-->
 <!-- //compare chart -->
-<form [formGroup]="secondchartForm" (ngSubmit)="onSubmit()" [ngbCollapse]="isComCollapsed" id="comChart">
+<form [formGroup]="secondchartForm" (ngSubmit)="Submit()"  [ngbCollapse]="isComCollapsed" id="comChart">
     <fieldset style=" width: 590px; margin: 60px auto 20px; padding: 20px; border: 1px solid #336699">
         <label class="custom-control-inline">Specify Periodicity:
             <div class="d-flex flex-wrap align-content-between">
@@ -116,45 +99,34 @@
                 </select>
             </div>
         </label>
-        <label class="custom-control-inline">
-            Time Period:
-            <div class="form-group hidden">
-                <div class="input-group">
-                    <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker="ngbDatepicker"
-                        [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                        [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!">
-                    <ng-template #t let-date let-focused="focused">
-                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                            (mouseleave)="hoveredDate = null">
-                            {{ date.day }}
-                        </span>
-                    </ng-template>
-                </div>
-            </div>
-            <div class="form-group" style="margin-left: 105px; margin-bottom: 0px;">
-                <div class="input-group">
-                    <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-                        [value]="formatter.format(fromDate)" formControlName="fromdate"
-                        (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
-                    <div class="input-group-append">
-                        <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
+        <label class="custom-control-inline">From Period
+            <form [formGroup]="secondchartForm"  class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="fromdate" name="dp"
+                            [(ngModel)]="modelt" ngbDatepicker #dt="ngbDatepicker" style="margin-left: 108px;">
+                        <div class="input-group-append">
+                            <button class="material-icons" (click)="dt.toggle()" type="button">date_range</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group ml-2" style="margin-bottom: 0px;">
-                <div class="input-group">
-                    <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
-                        [value]="formatter.format(toDate)"  formControlName="todate"
-                        (input)="toDate = validateInput(toDate, dpToDate.value)">
-                    <div class="input-group-append">
-                        <button class="material-icons" (click)="datepicker.toggle()" type="button">date_range</button>
-                    </div>
-                </div>
-                    <p>{{formatter.format(fromDate)}}</p>
-                    <p>{{formatter.format(toDate)}}</p>
-            </div>
+            </form>
         </label>
+        <!-- <pre>Model: {{ modelt | json }}</pre> -->
+        <label class="custom-control-inline">To Period
+            <form [formGroup]="secondchartForm" class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="todate" name="dp"
+                            [(ngModel)]="modelf" ngbDatepicker #df="ngbDatepicker" style="margin-left: 127px;">
+                        <div class="input-group-append">
+                            <button class="material-icons" (click)="df.toggle()" type="button">date_range</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </label>
+        <!-- <pre>Model: {{ modelf | json }}</pre> -->
         <label class="custom-control-inline">Select Company/Sector:
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" formControlName="coorse">
@@ -187,11 +159,11 @@
                 </select>
             </div>
         </label>
+        <p>value:{{secondchartForm.value | json }}</p>
         <div style="text-align:right">
-            <button (click)="submit" class="btn btn-large button_st" [disabled]="!secondchartForm.valid"
+            <button (click)="Submit" class="btn btn-large button_st" [disabled]="!secondchartForm.valid"
                 onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
-                [attr.aria-expanded]="!isSubCollapsed"
-                aria-controls="genComChart">
+                [attr.aria-expanded]="!isSubCollapsed" aria-controls="genComChart">
                 Generate Chart</button>
         </div>
     </fieldset>
@@ -208,10 +180,8 @@
     </highcharts-chart>
     <div style="text-align:right">
         <button type="submit" class="btn btn-large button_st_new" onmouseover="this.style.backgroundColor='#4c7cac';"
-            onmouseout="this.style.backgroundColor='#75a8db';" 
-            (click)="isMerCollapsed = !isMerCollapsed"
-            [attr.aria-expanded]="!isMerCollapsed" 
-            aria-controls="MerCollapsed">
+            onmouseout="this.style.backgroundColor='#75a8db';" (click)="isMerCollapsed = !isMerCollapsed"
+            [attr.aria-expanded]="!isMerCollapsed" aria-controls="MerCollapsed">
             Merge Chart</button>
     </div>
 </div>

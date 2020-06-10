@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { AdminService } from 'src/app/service/admin.service'
 // import { UploadService } from '../../../service/fileupload.service';
 @Component({
   selector: 'app-import-data',
@@ -14,9 +15,14 @@ export class ImportDataComponent implements OnInit {
     itemAlias: "file",  //别名（后台接受参数名）
     autoUpload: false  //是否自动上传（如果为true，则在input选择完后自动上传）
   });
+
   selectedFileOnChanged(event: any){
-    console.log(event.target.value);
+    console.log('111111',event.target.value);
+    // console.log('2222222',this.uploader.queue[0].file.name);
     this.selectedFile = event.target.value
+    this.AdminService.postImportData(event.target.value).subscribe((data) => {
+        console.log(data)
+      })
   }
   uploadFile() {
     //附加额外参数
@@ -40,7 +46,8 @@ export class ImportDataComponent implements OnInit {
         }
       }
     }
-    constructor() { 
+    
+    constructor(public AdminService:AdminService) { 
     }
   ngOnInit(): void {
   }

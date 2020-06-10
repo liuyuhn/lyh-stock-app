@@ -27,6 +27,8 @@ import { ImportDataComponent } from './admin/import-data/import-data.component';
 import { ManageCompanyComponent } from './admin/manage-company/manage-company.component';
 import { ManageExchangeComponent } from './admin/manage-exchange/manage-exchange.component';
 import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
+// import { EnvironmentComponent } from './environments/environments.component';
+
 
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 // // import module
@@ -51,7 +53,8 @@ import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
     ImportDataComponent,
     ManageCompanyComponent,
     ManageExchangeComponent,
-    UpdateIpoComponent
+    UpdateIpoComponent,
+    // EnvironmentsComponent
   ],
   imports: [
     BrowserModule, 
