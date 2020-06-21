@@ -69,7 +69,7 @@ import { UpdateIpoComponent } from './admin/update-ipo/update-ipo.component';
     // BrowserAnimationsModule,
     // ElModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: LoginComponent },
+      { path: '', component: LoginComponent, pathMatch: 'prefix'},
       { path: 'user-home', component: UserComponent },
       { path: 'sign-up', component: SignUpComponent },
       { path: 'change-pass', component: ChangePassComponent },

@@ -5,63 +5,63 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { AdminService } from 'src/app/service/admin.service'
 
 interface ipoinfo{
-  comname:string;
-  stockexchange:string;
-  pershare:number;
-  totalnum:number;
-  opendate:string;
-  remarks:string
+  company_name:string;
+  stock_exchange:string;
+  price_per_share:number;
+  total_num:number;
+  open_date:string;
+  remark:string
 }
-const IPOINFOS: ipoinfo[] =[
-  {
-    comname:'YPO',
-    stockexchange:'BSE',
-    pershare:80,
-    totalnum:20000,
-    opendate: '2020/06/15',
-    remarks:'new company'
-  },
-  {
-    comname:'JPG',
-    stockexchange:'NSE',
-    pershare:70,
-    totalnum:27777,
-    opendate: '2002/05/12',
-    remarks:'pay attention'
-  },
-  {
-    comname:'DWK',
-    stockexchange:'NSE',
-    pershare:77,
-    totalnum:16353,
-    opendate: '2012/07/12',
-    remarks:''
-  },
-  {
-    comname:'HFJ',
-    stockexchange:'BSE',
-    pershare:300,
-    totalnum:77245,
-    opendate: '1999/02/19',
-    remarks:'old company'
-  },
-  {
-    comname:'JPG',
-    stockexchange:'NSE',
-    pershare:70,
-    totalnum:50937,
-    opendate: '2005/09/12',
-    remarks:''
-  },
-  {
-    comname:'HTL',
-    stockexchange:'BSE',
-    pershare:280,
-    totalnum:64540,
-    opendate: '2016/12/28',
-    remarks:''
-  },
-]
+// const IPOINFOS: ipoinfo[] =[
+//   {
+//     company_name:'YPO',
+//     stock_exchange:'BSE',
+//     price_per_share:80,
+//     total_num:20000,
+//     open_date: '2020/06/15',
+//     remark:'new company'
+//   },
+//   {
+//     company_name:'JPG',
+//     stock_exchange:'NSE',
+//     price_per_share:70,
+//     total_num:27777,
+//     open_date: '2002/05/12',
+//     remark:'pay attention'
+//   },
+//   {
+//     company_name:'DWK',
+//     stock_exchange:'NSE',
+//     price_per_share:77,
+//     total_num:16353,
+//     open_date: '2012/07/12',
+//     remark:''
+//   },
+//   {
+//     company_name:'HFJ',
+//     stock_exchange:'BSE',
+//     price_per_share:300,
+//     total_num:77245,
+//     open_date: '1999/02/19',
+//     remark:'old company'
+//   },
+//   {
+//     company_name:'JPG',
+//     stock_exchange:'NSE',
+//     price_per_share:70,
+//     total_num:50937,
+//     open_date: '2005/09/12',
+//     remark:''
+//   },
+//   {
+//     company_name:'HTL',
+//     stock_exchange:'BSE',
+//     price_per_share:280,
+//     total_num:64540,
+//     open_date: '2016/12/28',
+//     remark:''
+//   },
+// ]
 
 @Component({
   selector: 'app-update-ipo',
@@ -69,17 +69,26 @@ const IPOINFOS: ipoinfo[] =[
   styleUrls: ['./update-ipo.component.css']
 })
 export class UpdateIpoComponent implements OnInit {
-   ipoinfos = IPOINFOS
+  //  ipoinfos = IPOINFOS
    ipoForm = this.fb.group({
-    comname: ['', Validators.required],
-    stockexchange: ['', Validators.required],
-    pershare: ['', Validators.required],
-    totalnum: ['', Validators.required], 
-    opendate: ['', Validators.required], 
-    remarks: ['', Validators.required] 
+    company_name: ['', Validators.required],
+    stock_exchange: ['', Validators.required],
+    price_per_share: ['', Validators.required],
+    total_num: ['', Validators.required], 
+    open_date: ['', Validators.required], 
+    remark: ['', Validators.required] 
   })
+  ipoinfos: Object;
+  // cominfos: Object;
    
   constructor(private fb: FormBuilder, private modalService: NgbModal, public AdminService:AdminService) { }
+
+  ngOnInit(): void {
+    this.AdminService.getIpoDetail().subscribe((data) => {
+      console.log(data)
+      this.ipoinfos = data
+    })
+  }
 
   closeResult = '';
   open(content, index) {
@@ -93,12 +102,12 @@ export class UpdateIpoComponent implements OnInit {
     //弹出框的input框里拿到当前选中数据的值--
     console.log('cominfo', this.ipoinfos)
     this.ipoForm.setValue({
-      comname: this.ipoinfos[index].comname,
-      stockexchange: this.ipoinfos[index].stockexchange,
-      pershare: this.ipoinfos[index].pershare,
-      totalnum: this.ipoinfos[index].totalnum,
-      opendate: this.ipoinfos[index].opendate,
-      remarks: this.ipoinfos[index].remarks
+      company_name: this.ipoinfos[index].company_name,
+      stock_exchange: this.ipoinfos[index].stock_exchange,
+      price_per_share: this.ipoinfos[index].price_per_share,
+      total_num: this.ipoinfos[index].total_num,
+      open_date: this.ipoinfos[index].open_date,
+      remark: this.ipoinfos[index].remark
     })
     this.ipoinfos[index] = this.ipoForm.value
     // console.log('ipoForm', this.ipoForm)
@@ -116,17 +125,12 @@ export class UpdateIpoComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.ipoForm.value);
-    this.AdminService.postUpIpo(this.ipoForm.value).subscribe((msg) => {
-      console.log(msg)
+    this.AdminService.postUpIpo(this.ipoForm.value).subscribe((data) => {
+      console.log(data)
       // this.result = data
     })
   }
 
-  ngOnInit(): void {
-    this.AdminService.getIpoDetail().subscribe((data) => {
-      console.log(data)
-      // this.cominfos = data
-    })
-  }
+  
 
 }

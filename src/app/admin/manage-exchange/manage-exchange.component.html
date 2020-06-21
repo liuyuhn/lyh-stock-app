@@ -12,9 +12,9 @@
     <tbody>
         <tr *ngFor="let exinfo of exinfos; let i = index" class="item">
             <th scope="row">{{ i + 1 }}</th>
-            <td>{{exinfo.stockchange}}</td>
-            <td>{{exinfo.exbrief}}</td>
-            <td>{{exinfo.conaddress}}</td>
+            <td>{{exinfo.stock_exchange}}</td>
+            <td>{{exinfo.brief}}</td>
+            <td>{{exinfo.contact_address}}</td>
             <td>{{exinfo.remark}}</td>
             <td class="column">
                 <button class="btn btn-sm button-st" (click)="open(content,i)"
@@ -42,15 +42,15 @@
       <form [formGroup]="manageExForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label class="label_stockchange">Stock Change:</label>
-            <input type="text" class="input" formControlName="stockchange">
+            <input type="text" class="input" formControlName="stock_exchange">
           </div>
           <div class="form-group">
             <label class="label_exbrief">Brief:</label>
-            <input type="text" class="input" formControlName="exbrief">
+            <input type="text" class="input" formControlName="brief">
           </div>
           <div class="form-group">
             <label class="label_conaddress">Contact Address:</label>
-            <input type="text" class="input" formControlName="conaddress">
+            <input type="text" class="input" formControlName="contact_address">
           </div>
           <div class="form-group">
             <label class="label_remark">Remarks:</label>
@@ -75,15 +75,15 @@
       <form [formGroup]="manageAddExForm" (ngSubmit)="addSubmit()">
         <div class="form-group">
             <label class="label_stockchange">Stock Change:</label>
-            <input type="text" class="input" formControlName="stockchange">
+            <input type="text" class="input" formControlName="stock_exchange">
           </div>
           <div class="form-group">
             <label class="label_exbrief">Brief:</label>
-            <input type="text" class="input" formControlName="exbrief">
+            <input type="text" class="input" formControlName="brief">
           </div>
           <div class="form-group">
             <label class="label_conaddress">Contact Address:</label>
-            <input type="text" class="input" formControlName="conaddress">
+            <input type="text" class="input" formControlName="contact_address">
           </div>
           <div class="form-group">
             <label class="label_remark">Remarks:</label>

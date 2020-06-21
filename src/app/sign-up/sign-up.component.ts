@@ -11,18 +11,20 @@ import { UserService } from '../service/user.service'
 })
 export class SignUpComponent implements OnInit {
   signupForm = this.fb.group({
-    name: ['', Validators.required],
-    pass: ['', Validators.required],
-    mail: ['', Validators.required],
-    tel: ['', Validators.required]
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+    email: ['', Validators.required],
+    mobile: ['', Validators.required],
+    usertype: ['', Validators.required],
   });
 
   constructor( private route: ActivatedRoute,private fb: FormBuilder, public UserService:UserService) { 
   }
-
+  public isCollapsed = true;
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.signupForm.value);
+    // console.log(this.signupForm.value);
     this.UserService.postSignUp(this.signupForm.value).subscribe((msg) => {
         console.log(msg)//msg为后台传来的返回消息
   })

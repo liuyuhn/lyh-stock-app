@@ -9,13 +9,13 @@ import { UserService } from 'src/app/service/user.service'
 })
 export class ChangePassComponent implements OnInit {
   changepassForm = this.fb.group({
-    name: ['', Validators.required],
-    pass: ['', Validators.required],
-    newpass: ['', Validators.required]
+    userName: ['', Validators.required],
+    passWord: ['', Validators.required],
+    newPassword: ['', Validators.required]
   });
 
   constructor(private fb: FormBuilder, public UserService: UserService) {}
-
+  public isCollapsed = true;
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.changepassForm.value);

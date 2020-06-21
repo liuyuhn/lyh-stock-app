@@ -2,16 +2,16 @@
     <legend>Change Password</legend>
     <div class="inp-positon">
         <label class="label_name" disabled>Name</label>
-        <input class="input" type="text" formControlName="name">
+        <input class="input" type="text" formControlName="userName">
     </div>
     <div class="inp-positon">
         <label class="label_pass">New Password</label>
-        <input class="input" type="text" formControlName="pass" #box (keyup)="onKey(box.value)">
+        <input class="input" type="text" formControlName="passWord" #box (keyup)="onKey(box.value)">
         <!-- <p>{{values}}</p> -->
     </div>
     <div class="inp-positon">
         <label class="label_confirm">Confrim Password</label>
-        <input class="input" type="text" formControlName="newpass" #box2 (keyup)="onconfirmKey(box2.value)">
+        <input class="input" type="text" formControlName="newPassword" #box2 (keyup)="onconfirmKey(box2.value)">
         <!-- <p>{{confirmvalues}}</p> -->
     </div>
     <p>
@@ -21,8 +21,23 @@
       </p>
     <p>value:{{changepassForm.value|json}}</p>
     <div class="positon">
-        <button type="submit" class="btn btn-large button-st" [disabled]="!changepassForm.valid"
+        <button (click)="onSubmit()" class="btn btn-large button-st" [disabled]="!changepassForm.valid"
         onmouseover="this.style.backgroundColor='#4c7cac';" 
-        onmouseout="this.style.backgroundColor='#75a8db';">Submit</button>
+        onmouseout="this.style.backgroundColor='#75a8db';"
+        (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
+        >Submit</button>
     </div>
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            Successful!Please back to login!
+            <button class="btn btn-large button-st"
+             onmouseover="this.style.backgroundColor='#4c7cac';" 
+             onmouseout="this.style.backgroundColor='#75a8db';"
+             [routerLink]="['']"
+             >Login</button>
+          </div>
+        </div>
+      </div>
 </fieldset>

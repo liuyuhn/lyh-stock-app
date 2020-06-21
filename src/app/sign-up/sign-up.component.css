@@ -40,6 +40,10 @@ legend {
     margin: 5px 4px;
     color: #012549;
 }
+.label_role{
+    margin: 5px 26px;
+    color: #012549;
+}
 .button-st{
     font-weight: normal;
     background-color: #75a8db;

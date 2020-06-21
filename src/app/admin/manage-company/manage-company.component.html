@@ -16,16 +16,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let cominfo of cominfos; let i = index" class="item">
-            <td>{{cominfo.code}}</td>
-            <td>{{cominfo.name}}</td>
-            <td>{{cominfo.turnovers}}</td>
+            <td>{{cominfo.company_code}}</td>
+            <td>{{cominfo.company_name}}</td>
+            <td>{{cominfo.turnover}}</td>
             <td>{{cominfo.ceo}}</td>
-            <td>{{cominfo.board}}</td>
-            <td>{{cominfo.list}}</td>
-            <td>{{cominfo.sector}}</td>
-            <td>{{cominfo.brief}}</td>
-            <td>{{cominfo.stock}}</td>
-            <td>{{cominfo.inuse}}</td>
+            <td>{{cominfo.board_of_director}}</td>
+            <td>{{cominfo.listed_in_se}}</td>
+            <td>{{cominfo.sector_name}}</td>
+            <td>{{cominfo.brife_write_up}}</td>
+            <td>{{cominfo.stock_code}}</td>
+            <td>{{cominfo.company_status}}</td>
             <td class="column">
                 <button class="btn btn-sm button-st" (click)="open(content,i)"
                 onmouseover="this.style.backgroundColor='#4c7cac';"
@@ -52,15 +52,15 @@
       <form [formGroup]="manageComForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label class="label_code">Comoany Code:</label>
-            <input type="text" class="input" formControlName="code">
+            <input type="text" class="input" formControlName="company_code">
           </div>
           <div class="form-group">
             <label class="label_name">Comoany Name:</label>
-            <input type="text" class="input" formControlName="name">
+            <input type="text" class="input" formControlName="company_name">
           </div>
           <div class="form-group">
             <label class="label_turn">Turnovers($):</label>
-            <input type="text" class="input" formControlName="turnovers">
+            <input type="text" class="input" formControlName="turnover">
           </div>
           <div class="form-group">
             <label class="label_ceo">CEO:</label>
@@ -68,32 +68,32 @@
           </div>
           <div class="form-group">
             <label class="label_board">Board of Directors:</label>
-            <input type="text" class="input" formControlName="board">
+            <input type="text" class="input" formControlName="board_of_director">
           </div>
           <div class="form-group">
             <label class="label_list">Listed in SE:</label>
-            <select class="custom-select" formControlName="list" placeholder="manageComForm.value.list">
-                <!-- <option selected>{{manageComForm.value.list}}</option> -->
+            <select class="custom-select" formControlName="listed_in_se" placeholder="manageComForm.value.listed_in_se">
+                <!-- <option selected>{{manageComForm.value.listed_in_se}}</option> -->
                 <option>Yes</option>
                 <option>No</option>
             </select>
           </div>
           <div class="form-group">
             <label class="label_sector">Sector Name:</label>
-            <input type="text" class="input" formControlName="sector" >
+            <input type="text" class="input" formControlName="sector_name" >
           </div>
           <div class="form-group">
             <label class="label_brief">Brief Writeup:</label>
-            <input type="text" class="input" formControlName="brief" >
+            <input type="text" class="input" formControlName="brife_write_up" >
           </div>
           <div class="form-group">
             <label class="label_stock">Stock Code:</label>
-            <input type="text" class="input" formControlName="stock" >
+            <input type="text" class="input" formControlName="stock_code" >
           </div>
           <div class="form-group">
             <label class="label_status">In Use:</label>
             <!-- <p>{{manageComForm.value.use}}</p> -->
-            <select class="custom-select" formControlName="inuse" placeholder="manageComForm.value.inuse">
+            <select class="custom-select" formControlName="company_status" placeholder="manageComForm.value.company_status">
               <option>Yes</option>
               <option>No</option>
             </select>
@@ -117,15 +117,15 @@
       <form [formGroup]="updatemanageComForm" (ngSubmit)="updateSubmit()">
         <div class="form-group">
             <label class="label_code">Comoany Code:</label>
-            <input type="text" class="input" formControlName="code">
+            <input type="text" class="input" formControlName="company_code">
           </div>
           <div class="form-group">
             <label class="label_name">Comoany Name:</label>
-            <input type="text" class="input" formControlName="name">
+            <input type="text" class="input" formControlName="company_name">
           </div>
           <div class="form-group">
             <label class="label_turn">Turnovers($):</label>
-            <input type="text" class="input" formControlName="turnovers">
+            <input type="text" class="input" formControlName="turnover">
           </div>
           <div class="form-group">
             <label class="label_ceo">CEO:</label>
@@ -133,32 +133,32 @@
           </div>
           <div class="form-group">
             <label class="label_board">Board of Directors:</label>
-            <input type="text" class="input" formControlName="board">
+            <input type="text" class="input" formControlName="board_of_director">
           </div>
           <div class="form-group">
             <label class="label_list">Listed in SE:</label>
-            <select class="custom-select" formControlName="list">
-                <!-- <option selected>{{manageComForm.value.list}}</option> -->
+            <select class="custom-select" formControlName="listed_in_se">
+                <!-- <option selected>{{manageComForm.value.listed_in_se}}</option> -->
                 <option>Yes</option>
                 <option>No</option>
             </select>
           </div>
           <div class="form-group">
             <label class="label_sector">Sector Name:</label>
-            <input type="text" class="input" formControlName="sector" >
+            <input type="text" class="input" formControlName="sector_name" >
           </div>
           <div class="form-group">
             <label class="label_brief">Brief Writeup:</label>
-            <input type="text" class="input" formControlName="brief" >
+            <input type="text" class="input" formControlName="brife_write_up" >
           </div>
           <div class="form-group">
             <label class="label_stock">Stock Code:</label>
-            <input type="text" class="input" formControlName="stock" >
+            <input type="text" class="input" formControlName="stock_code" >
           </div>
           <div class="form-group">
             <label class="label_status">In Use:</label>
             <!-- <p>{{manageComForm.value.use}}</p> -->
-            <select class="custom-select" formControlName="inuse">
+            <select class="custom-select" formControlName="company_status">
               <option>Yes</option>
               <option>No</option>
             </select>

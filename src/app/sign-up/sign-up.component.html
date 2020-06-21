@@ -3,26 +3,39 @@
     <legend>Sign Up</legend>
     <div class="inp-positon">
         <label class="label_name">Name</label>
-        <input class="input" type="text" formControlName="name">
+        <input class="input" type="text" formControlName="username">
     </div>
     <div class="inp-positon">
         <label class="label_pass">Password</label>
-        <input class="input" type="text" formControlName="pass">
+        <input class="input" type="text" formControlName="password">
     </div>
     <div class="inp-positon">
         <label class="label_mail">E-mail</label>
-        <input class="input" type="text" formControlName="mail">
+        <input class="input" type="text" formControlName="email">
     </div>
     <div class="inp-positon">
         <label class="label_tel">Telephone</label>
-        <input class="input" type="text" formControlName="tel">
+        <input class="input" type="text" formControlName="mobile">
+    </div>
+    <div class="inp-positon">
+        <label class="label_role">Role</label>
+        <input class="input" type="text" formControlName="usertype">
     </div>
     <div class="positon">
-        <button class="btn btn-large button-st" 
+        <button class="btn btn-large button-st" [disabled]="!signupForm.valid"
         onmouseover="this.style.backgroundColor='#4c7cac';" 
         onmouseout="this.style.backgroundColor='#75a8db';"
-        [routerLink]="['']">Submit</button>
+        (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
+        >Submit</button>
     </div>
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            Please confirm in your E-mail!
+          </div>
+        </div>
+      </div>
         <!-- <p>value:{{signupForm.value | json }}</p> -->
 </fieldset>
 </form>

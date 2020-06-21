@@ -6,79 +6,79 @@ import { AdminService } from 'src/app/service/admin.service'
 
 //--数据接口和假数据
 interface companyInfo {
-  code: number;
-  name: string;
-  turnovers: number;
+  company_code: number;
+  company_name: string;
+  turnover: number;
   ceo: string;
-  board: string;
-  list: string;
-  sector: string;
-  brief: string;
-  stock: number;
-  inuse: string;
+  board_of_director: string;
+  listed_in_se: string;
+  sector_name: string;
+  brife_write_up: string;
+  stock_code: number;
+  company_status: string;
 }
-const COMINFOS: companyInfo[] = [
-  {
-    code: 111111,
-    name: 'TOYOTA',
-    turnovers: 8746734.00,
-    ceo: 'Rose',
-    board: 'Group director',
-    list: 'Yes',
-    sector: 'Auto',
-    brief: 'Japan cars',
-    stock: 776453,
-    inuse: 'Yes'
-  },
-  {
-    code: 222222,
-    name: 'BMW',
-    turnovers: 4675539.00,
-    ceo: 'Jack',
-    board: 'Group director',
-    list: 'No',
-    sector: 'Auto',
-    brief: 'Germen cars',
-    stock: 456329,
-    inuse: 'Yes'
-  },
-  {
-    code: 333333,
-    name: 'Amarni',
-    turnovers: 4562234.00,
-    ceo: 'Rainbow',
-    board: 'Group director',
-    list: 'Yes',
-    sector: 'Make up',
-    brief: 'Beauty',
-    stock: 456223,
-    inuse: 'Yes'
-  },
-  {
-    code: 444444,
-    name: 'Dior',
-    turnovers: 4563834.00,
-    ceo: 'Hermn',
-    board: 'Group director',
-    list: 'No',
-    sector: 'Make up',
-    brief: 'Lipstick',
-    stock: 4453339,
-    inuse: 'Yes'
-  },
-  {
-    code: 555555,
-    name: 'Mac',
-    turnovers: 4534532.00,
-    ceo: 'Heedy',
-    board: 'Group director',
-    list: 'Yes',
-    sector: 'AMake up',
-    brief: 'foundation make-up',
-    stock: 354446,
-    inuse: 'Yes'
-  },
-]
+// const COMINFOS: companyInfo[] = [
+//   {
+//     company_code: 111111,
+//     company_name: 'TOYOTA',
+//     turnover: 8746734.00,
+//     ceo: 'Rose',
+//     board_of_director: 'Group director',
+//     listed_in_se: 'Yes',
+//     sector_name: 'Auto',
+//     brife_write_up: 'Japan cars',
+//     stock_code: 776453,
+//     company_status: 'Yes'
+//   },
+//   {
+//     company_code: 222222,
+//     company_name: 'BMW',
+//     turnover: 4675539.00,
+//     ceo: 'Jack',
+//     board_of_director: 'Group director',
+//     listed_in_se: 'No',
+//     sector_name: 'Auto',
+//     brife_write_up: 'Germen cars',
+//     stock_code: 456329,
+//     company_status: 'Yes'
+//   },
+//   {
+//     company_code: 333333,
+//     company_name: 'Amarni',
+//     turnover: 4562234.00,
+//     ceo: 'Rainbow',
+//     board_of_director: 'Group director',
+//     listed_in_se: 'Yes',
+//     sector_name: 'Make up',
+//     brife_write_up: 'Beauty',
+//     stock_code: 456223,
+//     company_status: 'Yes'
+//   },
+//   {
+//     company_code: 444444,
+//     company_name: 'Dior',
+//     turnover: 4563834.00,
+//     ceo: 'Hermn',
+//     board_of_director: 'Group director',
+//     listed_in_se: 'No',
+//     sector_name: 'Make up',
+//     brife_write_up: 'Lipstick',
+//     stock_code: 4453339,
+//     company_status: 'Yes'
+//   },
+//   {
+//     company_code: 555555,
+//     company_name: 'Mac',
+//     turnover: 4534532.00,
+//     ceo: 'Heedy',
+//     board_of_director: 'Group director',
+//     listed_in_se: 'Yes',
+//     sector_name: 'AMake up',
+//     brife_write_up: 'foundation make-up',
+//     stock_code: 354446,
+//     company_status: 'Yes'
+//   },
+// ]
 //数据接口和假数据--
 
 @Component({
@@ -87,38 +87,39 @@ const COMINFOS: companyInfo[] = [
   styleUrls: ['./manage-company.component.css']
 })
 export class ManageCompanyComponent implements OnInit {
-  cominfos = COMINFOS;
+  // cominfos = COMINFOS;
   manageComForm = this.fb.group({
-    code: ['', Validators.required],
-    name: ['', Validators.required],
-    turnovers: ['', Validators.required],
+    company_code: ['', Validators.required],
+    company_name: ['', Validators.required],
+    turnover: ['', Validators.required],
     ceo: ['', Validators.required],
-    board: ['', Validators.required],
-    list: ['', Validators.required],
-    sector: ['', Validators.required],
-    brief: ['', Validators.required],
-    stock: ['', Validators.required],
-    inuse: ['', Validators.required]
+    board_of_director: ['', Validators.required],
+    listed_in_se: ['', Validators.required],
+    sector_name: ['', Validators.required],
+    brife_write_up: ['', Validators.required],
+    stock_code: ['', Validators.required],
+    company_status: ['', Validators.required]
   })
   updatemanageComForm = this.fb.group({
-    code: ['', Validators.required],
-    name: ['', Validators.required],
-    turnovers: ['', Validators.required],
+    company_code: ['', Validators.required],
+    company_name: ['', Validators.required],
+    turnover: ['', Validators.required],
     ceo: ['', Validators.required],
-    board: ['', Validators.required],
-    list: ['', Validators.required],
-    sector: ['', Validators.required],
-    brief: ['', Validators.required],
-    stock: ['', Validators.required],
-    inuse: ['', Validators.required]
+    board_of_director: ['', Validators.required],
+    listed_in_se: ['', Validators.required],
+    sector_name: ['', Validators.required],
+    brife_write_up: ['', Validators.required],
+    stock_code: ['', Validators.required],
+    company_status: ['', Validators.required]
   })
+  cominfos: Object;
   
   constructor(private fb: FormBuilder, private modalService: NgbModal,public AdminService: AdminService) { }
   //--弹出框
   closeResult = '';
   open(content, index) {
     console.log('111111index', index)
-    console.log('code', this.cominfos[index].code)
+    console.log('company_code', this.cominfos[index].company_code)
     // this.cominfos(index,1)
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -128,16 +129,16 @@ export class ManageCompanyComponent implements OnInit {
     //弹出框的input框里拿到当前选中数据的值--
     console.log('cominfo', this.cominfos)
     this.manageComForm.setValue({
-      code: this.cominfos[index].code,
-      name: this.cominfos[index].name,
-      turnovers: this.cominfos[index].turnovers,
+      company_code: this.cominfos[index].company_code,
+      company_name: this.cominfos[index].company_name,
+      turnover: this.cominfos[index].turnover,
       ceo: this.cominfos[index].ceo,
-      board: this.cominfos[index].board,
-      list: this.cominfos[index].list,
-      sector: this.cominfos[index].sector,
-      brief: this.cominfos[index].brief,
-      stock: this.cominfos[index].stock,
-      inuse: this.cominfos[index].inuse,
+      board_of_director: this.cominfos[index].board_of_director,
+      listed_in_se: this.cominfos[index].listed_in_se,
+      sector_name: this.cominfos[index].sector_name,
+      brife_write_up: this.cominfos[index].brife_write_up,
+      stock_code: this.cominfos[index].stock_code,
+      company_status: this.cominfos[index].company_status,
     })
     this.cominfos[index] = this.manageComForm.value
     console.log('manageComForm', this.manageComForm)
@@ -167,7 +168,7 @@ export class ManageCompanyComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.manageComForm.value);
-    this.AdminService.postEditCom(this.manageComForm.value).subscribe((msg) => {
+    this.AdminService.postUpdateCom(this.manageComForm.value).subscribe((msg) => {
       console.log(msg)
       // this.result = data
     })
@@ -175,7 +176,7 @@ export class ManageCompanyComponent implements OnInit {
   
   updateSubmit(){
     console.warn(this.updatemanageComForm.value);
-    this.AdminService.postUpdateCom(this.updatemanageComForm.value).subscribe((msg) => {
+    this.AdminService.postEditCom(this.updatemanageComForm.value).subscribe((msg) => {
       console.log(msg)
       // this.result = data
     })
@@ -186,7 +187,7 @@ export class ManageCompanyComponent implements OnInit {
     this.cominfos
     this.AdminService.getComList().subscribe((data) => {
       console.log(data)
-      // this.cominfos = data
+      this.cominfos = data
     })
     console.log('cominfo11111', this.cominfos)
     console.log('lllllllll', this.manageComForm)

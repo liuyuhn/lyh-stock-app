@@ -1,0 +1,23 @@
+{
+    "/api":{
+        "target": "http://localhost:8080/",
+        "changeOrigin": true,
+        "pathRewrite": { 
+            "^/api": ""
+          }
+    },
+    "/adapi":{
+        "target": "http://localhost:8082/",
+        "changeOrigin": true,
+        "pathRewrite": { 
+            "^/adapi": ""
+          }
+    },
+    "/userapi":{
+        "target": "http://localhost:8081/",
+        "changeOrigin": true,
+        "pathRewrite": { 
+            "^/userapi": ""
+          }
+    }
+}

@@ -50,6 +50,14 @@ select.custom-select {
     box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);
     margin: 0px 120px 20px auto;
 }
+.label_todate{
+  border-radius: 7px !important;
+  margin: 12px 106px;
+}
+.label_fromdate{
+  border-radius: 7px !important;
+  margin: 5px 86px;
+}
 /* button{
     /* font-weight: normal; */
     /* background-color: #75a8db; */

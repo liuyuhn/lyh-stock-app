@@ -3,63 +3,63 @@ import { UserService } from 'src/app/service/user.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http' 
 
 interface ipolistinfo{
-  comname:string;
-  stockexchange:string;
-  pershare:number;
-  totalnum:number;
-  opendate:string;
-  remarks:string
+  company_name:string;
+  stock_exchange:string;
+  price_per_share:number;
+  total_num:number;
+  open_date:string;
+  remark:string
 }
-const IPOLISTS: ipolistinfo[] =[
-  {
-    comname:'YPO',
-    stockexchange:'BSE',
-    pershare:80,
-    totalnum:20000,
-    opendate: '2020/06/15',
-    remarks:'new company'
-  },
-  {
-    comname:'JPG',
-    stockexchange:'NSE',
-    pershare:70,
-    totalnum:27777,
-    opendate: '2002/05/12',
-    remarks:'pay attention'
-  },
-  {
-    comname:'DWK',
-    stockexchange:'NSE',
-    pershare:77,
-    totalnum:16353,
-    opendate: '2012/07/12',
-    remarks:''
-  },
-  {
-    comname:'HFJ',
-    stockexchange:'BSE',
-    pershare:300,
-    totalnum:77245,
-    opendate: '1999/02/19',
-    remarks:'old company'
-  },
-  {
-    comname:'JPG',
-    stockexchange:'NSE',
-    pershare:70,
-    totalnum:50937,
-    opendate: '2005/09/12',
-    remarks:''
-  },
-  {
-    comname:'HTL',
-    stockexchange:'BSE',
-    pershare:280,
-    totalnum:64540,
-    opendate: '2016/12/28',
-    remarks:''
-  },
-]
+// const IPOLISTS: ipolistinfo[] =[
+//   {
+//     company_name:'YPO',
+//     stock_exchange:'BSE',
+//     price_per_share:80,
+//     total_num:20000,
+//     open_date: '2020/06/15',
+//     remark:'new company'
+//   },
+//   {
+//     company_name:'JPG',
+//     stock_exchange:'NSE',
+//     price_per_share:70,
+//     total_num:27777,
+//     open_date: '2002/05/12',
+//     remark:'pay attention'
+//   },
+//   {
+//     company_name:'DWK',
+//     stock_exchange:'NSE',
+//     price_per_share:77,
+//     total_num:16353,
+//     open_date: '2012/07/12',
+//     remark:''
+//   },
+//   {
+//     company_name:'HFJ',
+//     stock_exchange:'BSE',
+//     price_per_share:300,
+//     total_num:77245,
+//     open_date: '1999/02/19',
+//     remark:'old company'
+//   },
+//   {
+//     company_name:'JPG',
+//     stock_exchange:'NSE',
+//     price_per_share:70,
+//     total_num:50937,
+//     open_date: '2005/09/12',
+//     remark:''
+//   },
+//   {
+//     company_name:'HTL',
+//     stock_exchange:'BSE',
+//     price_per_share:280,
+//     total_num:64540,
+//     open_date: '2016/12/28',
+//     remark:''
+//   },
+// ]
 
 @Component({
   selector: 'app-ipo-list',
@@ -67,13 +67,14 @@ const IPOLISTS: ipolistinfo[] =[
   styleUrls: ['./ipo-list.component.css']
 })
 export class IPOListComponent implements OnInit {
-  ipolists=IPOLISTS
+  ipolists: Object;
+  // ipolists=IPOLISTS
   constructor(public UserService: UserService,private http: HttpClient) { }
 
   ngOnInit(): void {
     this.UserService.getIpoList().subscribe((data) => {
         console.log(data)
-        // this.ipolists = data
+        this.ipolists = data
       })
   }
 

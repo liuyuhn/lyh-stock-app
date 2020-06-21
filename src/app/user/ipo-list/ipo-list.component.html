@@ -13,12 +13,12 @@
     <tbody>
         <tr *ngFor="let ipolist of ipolists; let i = index" class="item">
             <th scope="row">{{ i + 1 }}</th>
-            <td>{{ipolist.comname}}</td>
-            <td>{{ipolist.stockexchange}}</td>
-            <td>{{ipolist.pershare}}</td>
-            <td>{{ipolist.totalnum}}</td>
-            <td>{{ipolist.opendate}}</td>
-            <td>{{ipolist.remarks}}</td>
+            <td>{{ipolist.company_name}}</td>
+            <td>{{ipolist.stock_exchange}}</td>
+            <td>{{ipolist.price_per_share}}</td>
+            <td>{{ipolist.total_num}}</td>
+            <td>{{ipolist.open_date}}</td>
+            <td>{{ipolist.remark}}</td>
             <!-- <td class="column">
                 <button class="btn btn-sm button-st" (click)="open(content,i)"
                 onmouseover="this.style.backgroundColor='#4c7cac';"

@@ -6,27 +6,27 @@ import { AdminService } from 'src/app/service/admin.service'
 
 interface exchangeInfo {
   // id: number;
-  stockchange: string;
-  exbrief: string;
-  conaddress: string;
+  stock_exchange: string;
+  brief: string;
+  contact_address: string;
   remark: string;
 }
-const EXINFOS: exchangeInfo[] = [
-  {
-    // id: 1,
-    stockchange: 'BSE',
-    exbrief: 'Bse Stock Exchange',
-    conaddress: 'Canada',
-    remark: 'Canada BSE'
-  },
-  {
-    // id: 1,
-    stockchange: 'NSE',
-    exbrief: 'New Stock Exchange',
-    conaddress: 'Asia',
-    remark: 'Asia NSE'
-  }
-]
+// const EXINFOS: exchangeInfo[] = [
+//   {
+//     // id: 1,
+//     stock_exchange: 'BSE',
+//     brief: 'Bse Stock Exchange',
+//     contact_address: 'Canada',
+//     remark: 'Canada BSE'
+//   },
+//   {
+//     // id: 1,
+//     stock_exchange: 'NSE',
+//     brief: 'New Stock Exchange',
+//     contact_address: 'Asia',
+//     remark: 'Asia NSE'
+//   }
+// ]
 
 @Component({
   selector: 'app-manage-exchange',
@@ -34,19 +34,20 @@ const EXINFOS: exchangeInfo[] = [
   styleUrls: ['./manage-exchange.component.css']
 })
 export class ManageExchangeComponent implements OnInit {
-  exinfos = EXINFOS;
+  // exinfos = EXINFOS;
   manageExForm = this.fb.group({
-    stockchange: ['', Validators.required],
-    exbrief: ['', Validators.required],
-    conaddress: ['', Validators.required],
+    stock_exchange: ['', Validators.required],
+    brief: ['', Validators.required],
+    contact_address: ['', Validators.required],
     remark: ['', Validators.required] 
   })
   manageAddExForm = this.fb.group({
-    stockchange: ['', Validators.required],
-    exbrief: ['', Validators.required],
-    conaddress: ['', Validators.required],
+    stock_exchange: ['', Validators.required],
+    brief: ['', Validators.required],
+    contact_address: ['', Validators.required],
     remark: ['', Validators.required] 
   })
+  exinfos: Object;
 
   constructor(private fb: FormBuilder, private modalService: NgbModal, public AdminService:AdminService) { }
 
@@ -62,9 +63,9 @@ export class ManageExchangeComponent implements OnInit {
     //弹出框的input框里拿到当前选中数据的值--
     console.log('cominfo', this.exinfos)
     this.manageExForm.setValue({
-      stockchange: this.exinfos[index].stockchange,
-      exbrief: this.exinfos[index].exbrief,
-      conaddress: this.exinfos[index].conaddress,
+      stock_exchange: this.exinfos[index].stock_exchange,
+      brief: this.exinfos[index].brief,
+      contact_address: this.exinfos[index].contact_address,
       remark: this.exinfos[index].remark
     })
     this.exinfos[index] = this.manageExForm.value
@@ -110,7 +111,7 @@ export class ManageExchangeComponent implements OnInit {
   ngOnInit(): void {
     this.AdminService.getExchangeList().subscribe((data) => {
       console.log(data)
-      // this.cominfos = data
+      this.exinfos = data
     })
   }
 

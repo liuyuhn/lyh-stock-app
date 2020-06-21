@@ -5,40 +5,19 @@
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" style="margin-left: 58px;" formControlName="specify">
                     <option selected>Indiacte desired date range</option>
+                    <option>Day</option>
                     <option>Week</option>
                     <option>Month</option>
-                    <option>Year</option>
                 </select>
             </div>
         </label>
-        <label class="custom-control-inline">From Period
-            <form [formGroup]="firstchartForm" class="form-inline">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="fromdate" name="dp"
-                            [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" style="margin-left: 108px;">
-                        <div class="input-group-append">
-                            <button class="material-icons" (click)="d.toggle()" type="button">date_range</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </label>
-        <!-- <pre>Model: {{ model | json }}</pre> -->
-        <label class="custom-control-inline">To Period
-            <form [formGroup]="firstchartForm" class="form-inline">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="todate" name="dp"
-                            [(ngModel)]="models" ngbDatepicker #ds="ngbDatepicker" style="margin-left: 127px;">
-                        <div class="input-group-append">
-                            <button class="material-icons" (click)="ds.toggle()" type="button">date_range</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </label>
-        <!-- <pre>Model: {{ model1 | json }}</pre> -->
+        <div>
+            <label class="custom-control-inline">From Period:</label>
+            <input type="text" class="label_fromdate" formControlName="fromdate"></div>
+        <div>
+            <label class="custom-control-inline">To Period:</label>
+            <input type="text" class="label_todate" formControlName="todate">
+        </div>
         <label class="custom-control-inline">Select Company/Sector:
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" formControlName="coorse">
@@ -63,16 +42,12 @@
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" style="margin-left: 74px;" formControlName="comname">
                     <option selected>Please select...</option>
-                    <option>YPO</option>
-                    <option>JPG</option>
-                    <option>DWK</option>
-                    <option>HFJ</option>
-                    <option>JPG</option>
+                    <option>Amarni</option>
+                    <option>Dior</option>
                 </select>
             </div>
         </label>
-        <p>value:{{firstchartForm.value | json }}</p>
-
+        <!-- <p>value:{{firstchartForm.value | json }}</p> -->
         <div style="text-align:right">
             <button class="btn btn-large button_st" [disabled]="!firstchartForm.valid"
                 onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
@@ -87,46 +62,25 @@
 </form>
 <!--firstchart//-->
 <!-- //compare chart -->
-<form [formGroup]="secondchartForm" (ngSubmit)="Submit()"  [ngbCollapse]="isComCollapsed" id="comChart">
+<form [formGroup]="secondchartForm" (ngSubmit)="Submit()" [ngbCollapse]="isComCollapsed" id="comChart">
     <fieldset style=" width: 590px; margin: 60px auto 20px; padding: 20px; border: 1px solid #336699">
         <label class="custom-control-inline">Specify Periodicity:
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" style="margin-left: 58px;" formControlName="specify">
                     <option selected>Please select...</option>
-                    <option>One month</option>
-                    <option>Two months</option>
-                    <option>Three months</option>
+                    <option>Day</option>
+                    <option>Week</option>
+                    <option>Month</option>
                 </select>
             </div>
         </label>
-        <label class="custom-control-inline">From Period
-            <form [formGroup]="secondchartForm"  class="form-inline">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="fromdate" name="dp"
-                            [(ngModel)]="modelt" ngbDatepicker #dt="ngbDatepicker" style="margin-left: 108px;">
-                        <div class="input-group-append">
-                            <button class="material-icons" (click)="dt.toggle()" type="button">date_range</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </label>
-        <!-- <pre>Model: {{ modelt | json }}</pre> -->
-        <label class="custom-control-inline">To Period
-            <form [formGroup]="secondchartForm" class="form-inline">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" formControlName="todate" name="dp"
-                            [(ngModel)]="modelf" ngbDatepicker #df="ngbDatepicker" style="margin-left: 127px;">
-                        <div class="input-group-append">
-                            <button class="material-icons" (click)="df.toggle()" type="button">date_range</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </label>
-        <!-- <pre>Model: {{ modelf | json }}</pre> -->
+        <div>
+            <label class="custom-control-inline">From Period:</label>
+            <input type="text" class="label_fromdate" formControlName="fromdate"></div>
+        <div>
+            <label class="custom-control-inline">To Period:</label>
+            <input type="text" class="label_todate" formControlName="todate">
+        </div>
         <label class="custom-control-inline">Select Company/Sector:
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" formControlName="coorse">
@@ -151,15 +105,12 @@
             <div class="d-flex flex-wrap align-content-between">
                 <select class="custom-select" style="margin-left: 74px;" formControlName="comname">
                     <option selected>Please select...</option>
-                    <option>YPO</option>
-                    <option>JPG</option>
-                    <option>DWK</option>
-                    <option>HFJ</option>
-                    <option>JPG</option>
+                    <option>Amarni</option>
+                    <option>Dior</option>
                 </select>
             </div>
         </label>
-        <p>value:{{secondchartForm.value | json }}</p>
+        <!-- <p>value:{{secondchartForm.value | json }}</p> -->
         <div style="text-align:right">
             <button (click)="Submit" class="btn btn-large button_st" [disabled]="!secondchartForm.valid"
                 onmouseover="this.style.backgroundColor='#4c7cac';" onmouseout="this.style.backgroundColor='#75a8db';"
